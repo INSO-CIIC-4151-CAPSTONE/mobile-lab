@@ -37,7 +37,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # custom apps
-    'app.apps',
+    'app.apps.AppConfig',
     # Django default apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'mobilab.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
