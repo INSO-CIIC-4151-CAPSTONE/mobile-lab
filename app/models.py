@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -24,15 +24,10 @@ LOCATION_CHOICES = (
 )
 
 
-class User(AbstractUser):
-    is_patient = models.BooleanField(default=False)
-    is_technician = models.BooleanField(default=False)
-
-
 class Address(models.Model):
     address_line = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
-    zipcode = models.IntegerField(max_length=6)
+    zipcode = models.IntegerField()
     country = models.CharField(max_length=20, default='Puerto Rico')
 
 
