@@ -27,3 +27,35 @@
 | Francis J. Patron Fidalgo | francis.patron1@upr.edu   | CIIC |
 ---
 ## Supervisor: Dr. Wilson Rivera Gallego
+
+#Django Documentation
+https://docs.djangoproject.com/en/4.1/
+
+ # Set Up Repo:
+ 
+1. Make sure you have installed python  and a Python IDE(pycharm)
+2. Activate venv in the directory that you cloned the repo (virtual enviorment)
+3. Install Django 
+
+ # Set Up DB
+ 
+1. pip install psycopg2
+2. Install postgreSQL to your PC: https://www.postgresql.org/download/ 
+3. Make sure when installing to check pgAdmin 4 (Should be checked automatically) You can use Data Grip as well
+    https://www.jetbrains.com/datagrip/download/#section=windows
+    
+# DB Configuration
+
+"host": "ec2-34-199-68-114.compute-1.amazonaws.com",
+    "name": "d7hdohtgo1pqhh",
+    "user": "bcdyaoomxltesu",
+    "port": "5432",
+    "pass": "c09df90300130e30d569b72699b8ce054ccea344be0aa8e3877c74fc8b0ada85",
+    "uri": "postgres://bcdyaoomxltesu:c09df90300130e30d569b72699b8ce054ccea344be0aa8e3877c74fc8b0ada85@ec2-34-199-68-114.compute-1.amazonaws.com:5432/d7hdohtgo1pqhh"
+
+#DB Table Updates
+   1. python manage.py makemigrations UPR_Grader
+   2. python manage.py migrate
+   
+ #Run App
+ py manage.py runserver
