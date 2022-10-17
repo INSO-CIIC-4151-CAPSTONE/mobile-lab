@@ -28,10 +28,10 @@
 ---
 ## Supervisor: Dr. Wilson Rivera Gallego
 
-#Django Documentation
+## Django Documentation
 https://docs.djangoproject.com/en/4.1/
 
- # Set Up Repo:
+# Set Up Repo:
  
 1. Make sure you have installed python  and a Python IDE(pycharm)
 2. Activate venv in the directory that you cloned the repo (virtual enviorment)
@@ -44,18 +44,18 @@ https://docs.djangoproject.com/en/4.1/
 3. Make sure when installing to check pgAdmin 4 (Should be checked automatically) You can use Data Grip as well
     https://www.jetbrains.com/datagrip/download/#section=windows
     
-# DB Configuration
+ # DB Configuration
 
-1."host": "ec2-34-199-68-114.compute-1.amazonaws.com"
-   2. "name": "d7hdohtgo1pqhh"
-   3. "user": "bcdyaoomxltesu"
-   4. "port": "5432"
-   5. "pass": "c09df90300130e30d569b72699b8ce054ccea344be0aa8e3877c74fc8b0ada85"
-   6. "uri": "postgres://bcdyaoomxltesu:c09df90300130e30d569b72699b8ce054ccea344be0aa8e3877c74fc8b0ada85@ec2-34-199-68-114.compute-1.amazonaws.com:5432/d7hdohtgo1pqhh"
+"host": "ec2-34-199-68-114.compute-1.amazonaws.com"<br />
+    "name": "d7hdohtgo1pqhh"<br />
+    "user": "bcdyaoomxltesu" <br />
+    "port": "5432" <br />
+    "pass": "c09df90300130e30d569b72699b8ce054ccea344be0aa8e3877c74fc8b0ada85" <br />
+    "url": "postgres://bcdyaoomxltesu:c09df90300130e30d569b72699b8ce054ccea344be0aa8e3877c74fc8b0ada85@ec2-34-199-68-114.compute-1.amazonaws.com:5432/d7hdohtgo1pqhh"<br />
 
-#DB Table Updates
-   1. python manage.py makemigrations UPR_Grader
-   2. python manage.py migrate
+# Terminal commands for DB table updates and run app
+   1. py manage.py makemigrations 
+   2. py manage.py migrate
+   3. py manage.py runserver
    
- #Run App
- py manage.py runserver
+ 
