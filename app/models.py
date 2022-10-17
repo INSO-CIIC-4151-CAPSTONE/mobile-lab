@@ -1,15 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
 
 GENDER_CHOICES = (
-    ("M", "Male"),
-    ("F", "Female"),
+    ('M', 'Male'),
+    ('F', 'Female'),
 )
 
 STATUS_CHOICES = (
-
     ('Pending', 'Pending'),
     ('On The Way', 'LabTech on the way'),
     ('In Process', 'Analyzing Results'),
@@ -19,38 +18,59 @@ STATUS_CHOICES = (
 )
 
 LOCATION_CHOICES = (
-    ("IN-HOME", "IN-HOME"),
-    ("IN-LAB", "IN-LAB"),
+    ('IN-HOME', 'IN-HOME'),
+    ('IN-LAB', 'IN-LAB'),
+)
+
+USER_ROLE_CHOICES = (
+    ('ADMIN', 'admin'),
+    ('PATIENT', 'Patient'),
+    ('TECHNICIAN', 'Technician')
+)
+
+REQUEST_STATUS_CHOICES = (
+    ('APROVED', 'Aproved'),
+    ('DECLINED', 'Declined'),
+    ('PENDING', 'Pending')
 )
 
 
 class Address(models.Model):
-    address_line = models.CharField(max_length=200)
+    first_line = models.CharField(max_length=200)
+    second_line = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
-    zipcode = models.IntegerField()
-    country = models.CharField(max_length=20, default='Puerto Rico')
+    zip_code = models.CharField(max_length=15)
+    country = models.CharField(max_length=20, default='Puerto Rico')   
+    state = models.CharField(max_length=50)
 
+class Laboratory(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
 
 # class PaymentMethod(models.Model):
 
 
-class Patient(models.Model):
-    patient_user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE)
-    # payment_method =  models.ForeignKey(PaymentMethod, on_delete=models.CASCADE)
-    date_of_birth = models.DateTimeField()
-    weight = models.IntegerField()
-    height = models.IntegerField()
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    phone_number = models.IntegerField()
+class HealthCarePlan(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class User(AbstractUser):
+    role = models.CharField(max_length=50, choices=USER_ROLE_CHOICES)
+    health_care_plan = models.ForeignKey(HealthCarePlan, on_delete=models.CASCADE, null=True)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
+    phone_number = models.CharField(max_length=50)
+    employer_lab = models.ForeignKey(Laboratory, on_delete=models.CASCADE, null=True)
 
 
 class Test(models.Model):
-    test_name = models.CharField(max_length=20)
-    description = models.CharField(max_length=100)
-    requirements = models.CharField(max_length=100)
+    name = models.CharField(max_length=20)
+    description = models.CharField(max_length=500)
+    requirements = models.CharField(max_length=500)
     locations = models.CharField(choices=LOCATION_CHOICES, max_length=20, default='In-Home')
-    price = models.PositiveIntegerField()
+    laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
         return self.test_name
@@ -92,8 +112,11 @@ class Technician(models.Model):
     employee_code = models.CharField(max_length=10)
 
 
-class Laboratory(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.CharField(max_length=100)
-    address = models.CharField(max_length=100)
-    technicians = models.ForeignKey(Technician, on_delete=models.CASCADE)
+class Request(models.Model):
+    lab_test = models.ForeignKey(Test, on_delete=models.CASCADE)
+    patient = models.ForeignKey(User, related_name='patient', on_delete=models.CASCADE)
+    lab_technician = models.ForeignKey(User, related_name='lab_technician', on_delete=models.CASCADE)
+    test_status = models.CharField(max_length=50, choices=REQUEST_STATUS_CHOICES)
+
+class TestResult(models.Model):
+    test = models.ForeignKey(Test, on_delete=models.CASCADE)
