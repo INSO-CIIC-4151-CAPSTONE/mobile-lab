@@ -20,6 +20,6 @@ class User(AbstractUser):
         TECHNICIAN = 'TECHNICIAN', 'TECHNICIAN'
 
     role = models.CharField(max_length=50, choices=Role.choices)
-    health_care_plan = models.ForeignKey(HealthCarePlan, on_delete=models.CASCADE)
-    address = models.ForeignKey(UserAddress, on_delete=models.CASCADE)
+    health_care_plan = models.ForeignKey(HealthCarePlan, on_delete=models.CASCADE, null=True)
+    address = models.ForeignKey(UserAddress, on_delete=models.CASCADE, null=True)
     phone_number = models.CharField(max_length=50)
