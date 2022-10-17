@@ -24,7 +24,7 @@ LOCATION_CHOICES = (
 
 USER_ROLE_CHOICES = (
     ('ADMIN', 'admin'),
-    ('PATIENT', 'Patient')
+    ('PATIENT', 'Patient'),
     ('TECHNICIAN', 'Technician')
 )
 
@@ -111,12 +111,6 @@ class Technician(models.Model):
     phone_number = models.IntegerField()
     employee_code = models.CharField(max_length=10)
 
-
-class Laboratory(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.CharField(max_length=100)
-    address = models.CharField(max_length=100)
-    technicians = models.ForeignKey(Technician, on_delete=models.CASCADE)
 
 class Request(models.Model):
     lab_test = models.ForeignKey(Test, on_delete=models.CASCADE)

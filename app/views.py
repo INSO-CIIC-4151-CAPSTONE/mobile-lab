@@ -7,7 +7,7 @@ from django.db import *
 
 
 # Create your views here.
-from app.models import Patient
+from app.models import User
 
 
 def register_page(request):
@@ -21,10 +21,8 @@ def register_page(request):
         if password1 == password2:
             try:
                 user = User.objects.create_user(username=email, email=email, password=password1, first_name=first_name,
-                                                last_name=last_name)
+                                                last_name=last_name, role='Patient')
                 user.save()
-                new_patient = Patient.objects.create(patient_user=user)
-                new_patient.save()
 
                 user = authenticate(request, username=email, password=password1)
 
