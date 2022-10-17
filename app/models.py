@@ -35,7 +35,7 @@ class Address(models.Model):
 
 
 class Patient(models.Model):
-    patient_user = models.OneToOneField(User, on_delete=models.CASCADE)
+    patient_user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
     # payment_method =  models.ForeignKey(PaymentMethod, on_delete=models.CASCADE)
     date_of_birth = models.DateTimeField()
