@@ -46,12 +46,12 @@ https://docs.djangoproject.com/en/4.1/
     
 # DB Configuration
 
-"host": "ec2-34-199-68-114.compute-1.amazonaws.com"
-    "name": "d7hdohtgo1pqhh"
-    "user": "bcdyaoomxltesu"
-    "port": "5432"
-    "pass": "c09df90300130e30d569b72699b8ce054ccea344be0aa8e3877c74fc8b0ada85"
-    "uri": "postgres://bcdyaoomxltesu:c09df90300130e30d569b72699b8ce054ccea344be0aa8e3877c74fc8b0ada85@ec2-34-199-68-114.compute-1.amazonaws.com:5432/d7hdohtgo1pqhh"
+1."host": "ec2-34-199-68-114.compute-1.amazonaws.com"
+   2. "name": "d7hdohtgo1pqhh"
+   3. "user": "bcdyaoomxltesu"
+   4. "port": "5432"
+   5. "pass": "c09df90300130e30d569b72699b8ce054ccea344be0aa8e3877c74fc8b0ada85"
+   6. "uri": "postgres://bcdyaoomxltesu:c09df90300130e30d569b72699b8ce054ccea344be0aa8e3877c74fc8b0ada85@ec2-34-199-68-114.compute-1.amazonaws.com:5432/d7hdohtgo1pqhh"
 
 #DB Table Updates
    1. python manage.py makemigrations UPR_Grader
