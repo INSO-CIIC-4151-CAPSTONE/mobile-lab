@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>
+        Home Page
+    </title>
+</head>
+
+<body>
+<div>
+  <link href="/static/css/home.css" rel="stylesheet" />
+  <div class="home-container">
+    <div class="home-navbar navbar-container">
+      <div class="max-width">
+        <div class="home-logo">
+          <img src="/static/img/logo.png" class="home-image" />
+          <span class="home-text">MOBILE  LAB</span>
+        </div>
+        <div class="home-links">
+          <span class="home-home">HOME</span>
+          <span class="home-about">ABOUT</span>
+          <span class="home-tests">TESTS</span>
+          <span class="home-contact">CONTACT</span>
+          <button class="home-button button-secondary button">  LOG IN</button>
+        </div>
+      </div>
+    </div>
+    <div class="home-hero hero-container section-container">
+      <div class="home-max-width1 max-width">
+        <div class="home-content">
+          <h1 class="home-title">Order a Lab Test</h1>
+          <span class="home-description">
+            Need to perform a lab test but have a busy schedule. Mobile Lab has
+            the solution for you! Create a Mobile Lab account today to order lab
+            tests and the laboratory will send a specialist to perform the tests
+            at the comfort and convenience of your home.
+          </span>
+          <div class="home-container1">
+            <button type="submit" class="home-button2 button button-gradient"> <a href="{%  url 'register' %}">Register</a></button>
+            <button type="submit" class="home-button2 button button-gradient"> <a href="{%  url 'login' %}">Log In</a></button>
+          </div>
+        </div>
+        <img
+          alt="image"
+          src="/static/img/mobilab.png"
+          class="home-hero-image"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
