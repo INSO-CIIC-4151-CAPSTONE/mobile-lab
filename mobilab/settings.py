@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-98_e3rn3!k*xy5r*g&(-gpjaq6j3amrkdc_!h4+*02_=i&_#(*
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'mobi-lab.herokuapp.com'
+    '*'
 ]
 
 
