@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+{% load static %}
 
 <html>
 
@@ -11,12 +12,12 @@
 
 <body>
 <div>
-  <link href="/static/css/home.css" rel="stylesheet" />
+  <link href="{% static 'css/home.css' %}" rel="stylesheet" />
   <div class="home-container">
     <div class="home-navbar navbar-container">
       <div class="max-width">
         <div class="home-logo">
-          <img src="/static/img/logo.png" class="home-image" />
+          <img src="{% static 'img/logo.png' %}" class="home-image" />
           <span class="home-text">MOBILE  LAB</span>
         </div>
         <div class="home-links">
@@ -45,7 +46,7 @@
         </div>
         <img
           alt="image"
-          src="/static/img/mobilab.png"
+          src="{% static 'img/mobilab.png' %}"
           class="home-hero-image"
         />
       </div>
