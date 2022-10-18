@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --no-input; gunicorn mobilab.wsgi
+web: gunicorn mobilab.wsgi
