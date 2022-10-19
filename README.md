@@ -18,6 +18,7 @@
 </div>
 <br/>
 
+
 ## Team:
 
 | Name                      | Email                     | Dep. |
@@ -33,15 +34,15 @@ https://docs.djangoproject.com/en/4.1/
 
 # Set Up Repo:
  
-1. Make sure you have installed python  and a Python IDE(pycharm)
+1. Make sure you have installed python, pip, and a Python IDE(pycharm)
 2. Activate venv in the directory that you cloned the repo (virtual enviorment)
-3. Install Django 
+3. Install dependencies:   
+run inside repo directory: `pip3 install -r requirements.txt` 
 
- # Set Up DB
+ # Set Up a DB explorer
  
-1. pip install psycopg2
-2. Install postgreSQL to your PC: https://www.postgresql.org/download/ 
-3. Make sure when installing to check pgAdmin 4 (Should be checked automatically) You can use Data Grip as well
+1. Install postgreSQL to your PC: https://www.postgresql.org/download/ 
+2. Make sure when installing to check pgAdmin 4 (Should be checked automatically) You can use Data Grip as well
     https://www.jetbrains.com/datagrip/download/#section=windows
     
  # DB Configuration
