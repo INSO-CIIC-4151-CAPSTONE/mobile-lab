@@ -1,5 +1,5 @@
 # Capstone Project: MobiLab
-### www.mobilab.online
+### www.mobi-lab.online
 ---
 ## Description
 <div style="text-align: justify">
