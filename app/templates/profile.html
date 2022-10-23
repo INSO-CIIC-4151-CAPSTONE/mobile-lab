@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-     <h1>Welcome back!</h1>
-</head>
-<body>
+{%  extends 'main.html' %}
+{% block content %}
+    <div class="main-content">
 
-</body>
-</html>
+        <h1><p align="center"> <b> Welcome back! </b></p></h1>
+        <h3><p align="center">{{ name }}</p></h3>
+    </div>
+{% endblock %}

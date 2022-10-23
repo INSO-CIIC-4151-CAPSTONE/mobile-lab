@@ -3,7 +3,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 
-
 GENDER_CHOICES = (
     ('M', 'Male'),
     ('F', 'Female')
@@ -35,13 +34,15 @@ REQUEST_STATUS_CHOICES = (
     ('PENDING', 'Pending')
 )
 
+
 class Address(models.Model):
     first_line = models.CharField(max_length=200)
     second_line = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     zip_code = models.CharField(max_length=15)
-    country = models.CharField(max_length=20, default='Puerto Rico')   
+    country = models.CharField(max_length=20, default='Puerto Rico')
     state = models.CharField(max_length=50)
+
 
 class Laboratory(models.Model):
     name = models.CharField(max_length=100)
@@ -49,8 +50,10 @@ class Laboratory(models.Model):
     phone_number = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
 
+
 class HealthCarePlan(models.Model):
     name = models.CharField(max_length=255)
+
 
 class User(AbstractUser):
     role = models.CharField(max_length=50, choices=USER_ROLE_CHOICES)
@@ -60,9 +63,11 @@ class User(AbstractUser):
     employer_lab = models.ForeignKey(Laboratory, on_delete=models.CASCADE, null=True)
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, default='')
 
+
 class Card(models.Model):
     stride_token = models.CharField(max_length=500)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 class Test(models.Model):
     name = models.CharField(max_length=20)
@@ -71,18 +76,20 @@ class Test(models.Model):
     laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
+
 class Request(models.Model):
     requested_date = models.DateTimeField(auto_now_add=True)
     lab_test = models.ForeignKey(Test, on_delete=models.CASCADE)
-    date_and_time = models.DateTimeField() # YYYY-MM-DD HH:MM
+    date_and_time = models.DateTimeField()  # YYYY-MM-DD HH:MM
     patient = models.ForeignKey(User, related_name='request_patient', on_delete=models.CASCADE)
     technician = models.ForeignKey(User, related_name='request_technician', on_delete=models.CASCADE)
     status = models.CharField(max_length=50, choices=REQUEST_STATUS_CHOICES)
     comments = models.CharField(max_length=1024, default='')
     modality = models.CharField(max_length=50, choices=MODALITY_CHOICES, default='IN-HOME')
 
+
 class Appointment(models.Model):
-    date_and_time = models.DateTimeField() # YYYY-MM-DD HH:MM
+    date_and_time = models.DateTimeField()  # YYYY-MM-DD HH:MM
     patient = models.ForeignKey(User, related_name='appointment_patient', on_delete=models.CASCADE)
     technician = models.ForeignKey(User, related_name='appointment_technician', on_delete=models.CASCADE)
     Laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE)
@@ -91,6 +98,7 @@ class Appointment(models.Model):
     comments = models.CharField(max_length=1024, default='')
     status = models.CharField(choices=STATUS_CHOICES, max_length=50, default='Pending')
     modality = models.CharField(max_length=50, choices=MODALITY_CHOICES, default='IN-HOME')
+
 
 class TestResult(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE)

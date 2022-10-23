@@ -1,58 +1,155 @@
-
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MobiLab</title>
+    <meta property="og:title" content="MobiLab" />
 
-<html>
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6 {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Titillium Web;
+        font-size: 16px;
+      }
 
-<head>
-    <title>
-        Home Page
-    </title>
-</head>
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-scheme-green100);
+        background-color: var(--dl-color-scheme-yellow20);
 
-<body>
-<div>
-  <link href="{% static 'css/home.css' %}" rel="stylesheet" />
-  <div class="home-container">
-    <div class="home-navbar navbar-container">
-      <div class="max-width">
-        <div class="home-logo">
-          <img src="{% static 'img/logo.png' %}" class="home-image" />
-          <span class="home-text">MOBILE  LAB</span>
-        </div>
-        <div class="home-links">
-          <span class="home-home">HOME</span>
-          <span class="home-about">ABOUT</span>
-          <span class="home-tests">TESTS</span>
-          <span class="home-contact">CONTACT</span>
-          <button class="home-button button-secondary button">  LOG IN</button>
-        </div>
-      </div>
-    </div>
-    <div class="home-hero hero-container section-container">
-      <div class="home-max-width1 max-width">
-        <div class="home-content">
-          <h1 class="home-title">Order a Lab Test</h1>
-          <span class="home-description">
-            Need to perform a lab test but have a busy schedule. Mobile Lab has
-            the solution for you! Create a Mobile Lab account today to order lab
-            tests and the laboratory will send a specialist to perform the tests
-            at the comfort and convenience of your home.
-          </span>
-          <div class="home-container1">
-            <button type="submit" class="home-button2 button button-gradient"> <a href="{%  url 'register' %}">Register</a></button>
-            <button type="submit" class="home-button2 button button-gradient"> <a href="{%  url 'login' %}">Log In</a></button>
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&amp;display=swap"
+      data-tag="font"
+    />
+    <!--This is the head section-->
+    <!-- <script type="text/javascript"> ... </script> -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div>
+      <link href="{% static 'css/home.css' %}" rel="stylesheet" />
+
+      <div class="home-container">
+        <div class="home-navbar navbar-container">
+          <div class="max-width">
+            <div class="home-logo">
+              <img
+                src="{% static 'img/logo.png' %}"
+                class="home-image"
+              />
+              <span class="home-text">MOBILE&nbsp; LAB</span>
+            </div>
+            <div class="home-links">
+              <span class="home-home">HOME</span>
+              <span class="home-about">ABOUT</span>
+              <span class="home-test">TESTS</span>
+              <span class="home-contact">CONTACT</span>
+              <button class="home-login button-secondary button" onclick="location.href='login'">
+                &nbsp; LOG IN
+              </button>
+            </div>
           </div>
         </div>
-        <img
-          alt="image"
-          src="{% static 'img/mobilab.png' %}"
-          class="home-hero-image"
-        />
+        <div class="home-hero hero-container section-container">
+          <div class="home-max-width1 max-width">
+            <div class="home-content">
+              <h1 class="home-title">Order a Lab Test</h1>
+              <span class="home-description">
+                Need to perform a lab test but have a busy schedule. Mobile Lab
+                has the solution for you! Create a Mobile Lab account today to
+                order lab tests and the laboratory will send a specialist to
+                perform the tests at the comfort and convenience of your home.
+              </span>
+              <div class="home-container1">
+                <a
+                  href="{%  url 'register' %}"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="home-signup button button-gradient"
+                >
+                  Sign Up
+                </a>
+                <a
+                  href="{%  url 'login' %}"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="home-login1 button button-gradient"
+                >
+                  Log In
+                </a>
+              </div>
+            </div>
+            <img
+              alt="image"
+              src="{% static 'img/mobilab.png' %}"
+              class="home-hero-image"
+            />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-</body>
+    <script>
+      window.onload = () => {
+        const runAllScripts = () => {
+          initializeAllAccordions()
+        }
 
+        const listenForUrlChanges = () => {
+          let url = location.href
+          document.body.addEventListener(
+            'click',
+            () => {
+              requestAnimationFrame(() => {
+                if (url !== location.href) {
+                  runAllScripts()
+                  url = location.href
+                }
+              })
+            },
+            true
+          )
+        }
+
+        const initializeAllAccordions = () => {
+          const allAccordions = document.querySelectorAll('[data-role="Accordion"]');
+
+          allAccordions.forEach((accordion) => {
+            const accordionHeader = accordion.querySelector('[data-type="accordion-header"]')
+            const accordionContent = accordion.querySelector('[data-type="accordion-content"]')
+
+            accordionHeader.addEventListener('click', () => {
+              if (accordionContent.style.maxHeight) {
+                accordionContent.style.maxHeight = ''
+              } else {
+                accordionContent.style.maxHeight = `${accordionContent.scrollHeight}px`
+              }
+            })
+          })
+        }
+
+        listenForUrlChanges()
+        runAllScripts()
+      }
+    </script>
+  </body>
 </html>

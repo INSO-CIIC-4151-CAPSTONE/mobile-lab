@@ -1,4 +1,4 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.core.checks import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -28,7 +28,7 @@ def register_page(request):
 
                 if user is not None:
                     login(request, user)
-                    return redirect('profile.html')
+                    return redirect('profile')
 
             except IntegrityError:
                 print("Integrity Error")
@@ -45,9 +45,9 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect('/profile')
+            return redirect('profile')
         else:
-            messages.info(request, 'Invalid Username or Password')
+            messages.Info(request, 'Invalid Username or Password')
             return redirect("/")
 
     return render(request, 'login.html')
@@ -55,3 +55,13 @@ def login_page(request):
 
 def home_page(request):
     return render(request, 'home.html')
+
+
+def profile_view(request):
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
+    return render(request, 'profile.html')
