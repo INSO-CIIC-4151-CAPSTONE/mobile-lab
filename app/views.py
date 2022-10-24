@@ -1,5 +1,6 @@
 from django.contrib.auth import login, logout
 from django.core.checks import messages
+from django.core.exceptions import DisallowedRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -58,10 +59,20 @@ def home_page(request):
 
 
 def profile_view(request):
+
     if request.method == 'POST':
         logout_request = request.POST.get('logout', None)
 
         if request.user.is_authenticated and logout_request is not None:
             logout(request)
             return redirect('/')
-    return render(request, 'profile.html')
+
+    name = request.user.first_name + ' ' + request.user.last_name
+    context = {'name': name,
+               'gender': "F",
+               'address': "567 Aguadilla PR",
+               'phonenumber': "787-999-1610",
+               }
+    return render(request, 'profile.html', context)
+
+

@@ -48,6 +48,7 @@
   <body>
     <div>
       <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="{% static '/css/profile.css' %}">
 
       <div class="main-container">
         <div class="main-navbar navbar-container">
@@ -74,6 +75,15 @@
             </div>
           </div>
         </div>
+          {% block content %}
+
+
+
+
+
+
+
+           {% endblock %}
         <footer class="main-footer">
           <img
             alt="logo"
