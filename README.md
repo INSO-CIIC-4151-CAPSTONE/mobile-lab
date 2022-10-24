@@ -33,6 +33,9 @@
 ## Django Documentation
 https://docs.djangoproject.com/en/4.1/
 
+## postgreSQL Documentation
+https://www.postgresql.org/docs/current/
+
 # Set Up Repo:
  
 1. Make sure you have installed python, pip, and a Python IDE(pycharm)
