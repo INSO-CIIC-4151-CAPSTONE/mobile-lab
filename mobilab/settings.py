@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites'
+    'django.contrib.sites',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,8 @@ MIDDLEWARE = [
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ROOT_URLCONF = 'mobilab.urls'
+
+SITE_ID=1
 
 TEMPLATES = [
     {
@@ -132,6 +135,18 @@ USE_I18N = True
 
 USE_TZ = True
 
+# aws settings
+AWS_CONFIG = CONFIG['aws']
+AWS_ACCESS_KEY_ID = AWS_CONFIG['access_key_id']
+AWS_SECRET_ACCESS_KEY = AWS_CONFIG['secret_access_key']
+AWS_STORAGE_BUCKET_NAME = AWS_CONFIG['storage_bucket_name']
+AWS_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.{AWS_CONFIG["base_domain"]}'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+MEDIA_URL = f'https://{AWS_CUSTOM_DOMAIN}/media/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -144,8 +159,8 @@ STATICFILES_DIRS = [
 ]
 
 # SSL certificate
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

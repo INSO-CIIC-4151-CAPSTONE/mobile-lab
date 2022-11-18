@@ -53,6 +53,7 @@ class Laboratory(models.Model):
 
 class HealthCarePlan(models.Model):
     name = models.CharField(max_length=255)
+    card_front = models.ImageField(default=None, upload_to='insurance_cards_images/')
 
 
 class User(AbstractUser):
