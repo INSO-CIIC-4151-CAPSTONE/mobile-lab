@@ -41,7 +41,8 @@ https://www.postgresql.org/docs/current/
 1. Make sure you have installed python, pip, and a Python IDE(pycharm)
 2. Activate venv in the directory that you cloned the repo (virtual enviorment)
 3. Install dependencies:   
-run inside repo directory: `pip3 install -r requirements.txt` 
+run inside repo directory: `pip3 install -r requirements.txt`   
+3. Place `.env` file in project root directory `mobi-lab/`
 
  # Set Up a DB explorer
  
