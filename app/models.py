@@ -53,15 +53,18 @@ class Laboratory(models.Model):
 
 class HealthCarePlan(models.Model):
     name = models.CharField(max_length=255)
+    card_front = models.ImageField(upload_to='insurance_cards_images/')
+    card_back = models.ImageField(upload_to='insurance_cards_images/')
 
 
 class User(AbstractUser):
     role = models.CharField(max_length=50, choices=USER_ROLE_CHOICES)
     health_care_plan = models.ForeignKey(HealthCarePlan, on_delete=models.CASCADE, null=True)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
-    phone_number = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=50, null=True)
     employer_lab = models.ForeignKey(Laboratory, on_delete=models.CASCADE, null=True)
-    gender = models.CharField(max_length=50, choices=GENDER_CHOICES, default='')
+    gender = models.CharField(max_length=50, choices=GENDER_CHOICES, default='', null=True)
+    profile_picture = models.ImageField(upload_to='profile_images/', null=True)
 
 
 class Card(models.Model):
