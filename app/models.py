@@ -73,9 +73,9 @@ class Card(models.Model):
 
 
 class Test(models.Model):
-    name = models.CharField(max_length=20)
-    description = models.CharField(max_length=500)
-    requirements = models.CharField(max_length=500)
+    name = models.CharField(max_length=500)
+    description = models.CharField(max_length=5000)
+    requirements = models.CharField(max_length=1500)
     laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
