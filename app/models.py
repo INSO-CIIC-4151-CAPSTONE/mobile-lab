@@ -106,6 +106,7 @@ class Appointment(models.Model):
 class TestResult(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
 
+
 class Message(models.Model):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)

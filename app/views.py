@@ -6,10 +6,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.db import *
 
-
 # Create your views here.
 from app.models import User
 from app.models import Message
+
 
 def register_page(request):
     if request.method == 'POST':
@@ -59,7 +59,6 @@ def home_page(request):
 
 
 def profile_view(request):
-
     if request.method == 'POST':
         logout_request = request.POST.get('logout', None)
 
@@ -69,14 +68,16 @@ def profile_view(request):
 
     name = request.user.first_name + ' ' + request.user.last_name
     context = {'name': name,
-               'gender': "F",
-               'address': "567 Aguadilla PR",
-               'phonenumber': "787-999-1610",
+               'gender': request.user.gender,
+               'address': request.user.address,
+               'phone-number': request.user.phone_number,
                }
     return render(request, 'profile.html', context)
 
+
 def about_view(request):
     return render(request, 'about.html')
+
 
 def contact_view(request):
     if request.method == 'POST':
@@ -84,13 +85,14 @@ def contact_view(request):
         email = request.POST['email']
         message_str = request.POST['message']
 
-        message_obj = Message.objects.create(name = name, email = email, message = message_str)
+        message_obj = Message.objects.create(name=name, email=email, message=message_str)
 
         message_obj.save()
         messages.Info(request, 'Message sent!')
         return redirect('/')
 
-
     return render(request, 'contact.html')
 
 
+def catalog_view(request):
+    return render(request, 'catalog.html')

@@ -1,112 +1,250 @@
 .profile-container {
   width: 100%;
   display: flex;
-  overflow: auto;
   min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  background-color: #ffffff;
+}
+.profile-navbar {
+  align-self: stretch;
+  border-color: #000000;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #ffffff;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 2px;
+}
+.profile-logo {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .profile-image {
-  width: 100px;
+  width: var(--dl-size-size-small);
+  object-fit: cover;
+  margin-right: 14px;
+}
+.profile-text {
+  color: rgb(0, 0, 0);
+  font-family: Titillium Web;
+}
+.profile-links {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.profile-home {
+  color: rgb(162, 47, 162);
+  font-size: 16px;
+  font-style: normal;
+  font-family: Titillium Web;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-right: var(--dl-space-space-twounits);
+  text-transform: none;
+  text-decoration: none;
+}
+.profile-about {
+  color: #a22fa2;
+  font-size: 16px;
+  font-style: normal;
+  font-family: Titillium Web;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-right: var(--dl-space-space-twounits);
+  text-transform: none;
+  text-decoration: none;
+}
+.profile-test {
+  color: rgb(162, 47, 162);
+  font-size: 16px;
+  font-style: normal;
+  font-family: Titillium Web;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-right: var(--dl-space-space-twounits);
+  text-transform: none;
+  text-decoration: none;
+}
+.profile-contact {
+  color: rgb(162, 47, 162);
+  font-size: 16px;
+  font-style: normal;
+  font-family: Titillium Web;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-right: var(--dl-space-space-twounits);
+  text-transform: none;
+  text-decoration: none;
+}
+.profile-login {
+  color: rgb(249, 249, 249);
+  width: 130px;
+  height: 42px;
+  transition: 0.3s;
+  font-family: Titillium Web;
+  border-color: #611b7f;
+  background-color: rgb(23, 144, 96);
+}
+.profile-login:hover {
+  background-color: #58236b;
+}
+.profile-image1 {
+  width: 216px;
+  height: 209px;
   object-fit: cover;
 }
-.profile-feature-card {
-  width: 100%;
-  height: 814px;
+.profile-container1 {
+  top: 0px;
+  left: 0px;
+  width: 1599px;
+  height: 1203px;
   display: flex;
-  padding: var(--dl-space-space-twounits);
-  position: relative;
+  position: absolute;
+  align-items: flex-start;
+  background-size: cover;
+  background-image: url('https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDQ4fHxwbGFudCUyMGRlc2t0b3B8ZW58MHx8fHwxNjcwMTYyODQ5&ixlib=rb-4.0.3&w=1600');
+}
+.profile-footer {
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  bottom: 0px;
+  margin: auto;
+  display: flex;
+  position: absolute;
+  max-width: var(--dl-size-size-maxwidth);
   align-items: center;
-  padding-top: 32px;
-  flex-direction: column;
-  justify-content: flex-start;
+  padding-top: var(--dl-space-space-twounits);
+  padding-left: 13px;
+  padding-right: 13px;
+  padding-bottom: var(--dl-space-space-twounits);
+  justify-content: center;
+}
+.profile-image2 {
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  height: 20px;
+  margin: auto;
+  position: absolute;
+  object-fit: cover;
+}
+.profile-text1 {
+  top: 33px;
+  left: 21px;
+  color: rgb(0, 0, 0);
+  margin: auto;
+  position: absolute;
+  font-size: 10px;
+  font-family: Titillium Web;
 }
 .profile-icon {
-  top: 249px;
-  left: 886px;
-  width: var(--dl-size-size-large);
-  height: var(--dl-size-size-large);
+  top: 32px;
+  right: 0px;
+  width: 20px;
+  height: 20px;
   position: absolute;
 }
 .profile-icon02 {
-  width: 24px;
-  height: 24px;
+  top: 0px;
+  fill: #929292;
+  right: 0px;
+  width: 20px;
+  bottom: 0px;
+  height: 20px;
+  margin: auto;
+  position: absolute;
+}
+.profile-text2 {
+  color: rgb(0, 0, 0);
+  font-size: 10px;
+  align-self: center;
+  font-family: Titillium Web;
+}
+.profile-max-width1 {
+  height: 894px;
+  align-self: center;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 .profile-icon04 {
+  top: 162px;
+  fill: #6f1592;
+  left: 0px;
+  right: 0px;
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-large);
+  margin: auto;
+  position: absolute;
+}
+.profile-title {
+  top: 330px;
+  left: 0px;
+  color: rgb(23, 144, 96);
+  right: 0px;
+  margin: auto;
+  position: absolute;
+  font-size: 52px;
+  align-self: center;
+  font-style: normal;
+  text-align: center;
+  font-family: Urbanist;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.profile-container2 {
+  top: 429px;
+  flex: 0 0 auto;
+  left: 635px;
+  width: 508px;
+  height: 118px;
+  margin: auto;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  margin-bottom: auto;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.profile-gender {
+  top: 5px;
+  left: 76px;
+  margin: auto;
+  position: absolute;
+}
+.profile-icon06 {
+  top: 3px;
+  left: 48px;
   width: 24px;
   height: 24px;
+  position: absolute;
 }
-.profile-icon09 {
+.profile-icon11 {
+  top: 28px;
+  left: -5px;
   width: 24px;
   height: 24px;
+  position: absolute;
 }
-@media(max-width: 1600px) {
-  .profile-container {
-    align-items: center;
-  }
-  .profile-image {
-    top: 94px;
-    right: -5px;
-    width: 1599px;
-    height: 755px;
-    align-self: center;
-    margin-top: 0px;
-    margin-left: 0px;
-  }
-  .profile-feature-card {
-    top: 17px;
-    left: -8px;
-    width: 1599px;
-    height: 427px;
-    position: absolute;
-    padding-bottom: 0px;
-  }
-  .profile-address {
-    left: 662px;
-    color: rgb(0, 0, 0);
-    bottom: 36px;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0);
-  }
-  .profile-gender {
-    top: 346px;
-    left: 669px;
-    color: rgb(0, 0, 0);
-    position: absolute;
-  }
-  .profile-phone {
-    left: 618px;
-    color: #000000;
-    bottom: 11px;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0);
-  }
-  .profile-icon {
-    top: 195px;
-    left: 0px;
-    right: 0px;
-    margin: auto;
-  }
-  .profile-icon02 {
-    left: 587px;
-    bottom: 7px;
-    position: absolute;
-  }
-  .profile-icon04 {
-    top: 338px;
-    left: 630px;
-    position: absolute;
-  }
-  .profile-icon09 {
-    left: 628px;
-    bottom: 34px;
-    position: absolute;
-  }
-  .profile-text2 {
-    top: 156px;
-    left: 650px;
-    color: #9f11c7;
-    position: absolute;
-  }
+.profile-phone {
+  top: 31px;
+  left: 24px;
+  position: absolute;
+}
+.profile-icon13 {
+  top: 55px;
+  left: 41px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+}
+.profile-address {
+  top: 57px;
+  left: 71px;
+  position: absolute;
 }
