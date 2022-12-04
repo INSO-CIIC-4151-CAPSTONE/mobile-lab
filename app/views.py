@@ -9,7 +9,7 @@ from django.db import *
 
 # Create your views here.
 from app.models import User
-
+from app.models import Message
 
 def register_page(request):
     if request.method == 'POST':
@@ -74,5 +74,23 @@ def profile_view(request):
                'phonenumber': "787-999-1610",
                }
     return render(request, 'profile.html', context)
+
+def about_view(request):
+    return render(request, 'about.html')
+
+def contact_view(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        message_str = request.POST['message']
+
+        message_obj = Message.objects.create(name = name, email = email, message = message_str)
+
+        message_obj.save()
+        messages.Info(request, 'Message sent!')
+        return redirect('/')
+
+
+    return render(request, 'contact.html')
 
 

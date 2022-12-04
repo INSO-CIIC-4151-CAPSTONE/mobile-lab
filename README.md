@@ -33,7 +33,7 @@
 ## Django Documentation
 https://docs.djangoproject.com/en/4.1/
 
-## postgreSQL Documentation
+## postgreSQL Documentationp
 https://www.postgresql.org/docs/current/
 
 # Set Up Repo:
@@ -60,8 +60,11 @@ run inside repo directory: `pip3 install -r requirements.txt`
     "url": "postgres://bcdyaoomxltesu:c09df90300130e30d569b72699b8ce054ccea344be0aa8e3877c74fc8b0ada85@ec2-34-199-68-114.compute-1.amazonaws.com:5432/d7hdohtgo1pqhh"<br />
 
 # Terminal commands for DB table updates and run app
-   1. py manage.py makemigrations 
-   2. py manage.py migrate
-   3. py manage.py runserver
+   1. `py manage.py makemigrations`
+   2. `py manage.py migrate`
+   3. `y manage.py runserver`
+
+# Update Lab Tests in db from all_lab_tests.csv   
+`manage.py updatetests`
    
  

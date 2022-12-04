@@ -54,6 +54,7 @@
   margin-right: var(--dl-space-space-twounits);
   text-transform: none;
   text-decoration: none;
+  cursor: pointer;
 }
 .main-about1 {
   color: rgb(162, 47, 162);
@@ -76,6 +77,7 @@
   margin-right: var(--dl-space-space-twounits);
   text-transform: none;
   text-decoration: none;
+  cursor: pointer;
 }
 .main-button {
   color: rgb(249, 249, 249);
