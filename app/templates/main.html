@@ -61,10 +61,18 @@
               <span class="main-text">MOBILE&nbsp; LAB</span>
             </div>
             <div class="main-links">
-              <span class="main-home">HOME</span>
-              <span class="main-about">ABOUT</span>
-              <span class="main-about1">TESTS</span>
-              <span class="main-contact">CONTACT</span>
+              <button class="main-home" onclick="location.href='/home'">
+                HOME
+              </button>
+              <button class="main-about" onclick="location.href='/about'">
+                ABOUT
+              </button>
+              <button class="main-test">
+                TESTS
+              </button>
+              <button class="main-contact" onclick="location.href='/contact'">
+                CONTACT
+              </button>
               <form name = "logout" method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="logout" value="logout">
