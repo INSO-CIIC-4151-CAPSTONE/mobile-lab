@@ -7,8 +7,9 @@ from django.contrib.auth import authenticate
 from django.db import *
 
 # Create your views here.
-from app.models import User
+from app.models import User, Test, Request
 from app.models import Message
+from app.forms import RequestForm
 
 
 def register_page(request):
@@ -37,7 +38,7 @@ def register_page(request):
     return render(request, 'register.html')
 
 
-def login_page(request):
+def login_view(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
@@ -54,7 +55,7 @@ def login_page(request):
     return render(request, 'login.html')
 
 
-def home_page(request):
+def home_view(request):
     return render(request, 'home.html')
 
 
@@ -94,5 +95,39 @@ def contact_view(request):
     return render(request, 'contact.html')
 
 
-def catalog_view(request):
-    return render(request, 'catalog.html')
+def test_view(request):
+    tests = Test.objects.all()
+    return render(request, 'catalog.html', {'tests': tests})
+
+
+def createTestRequest(request):
+    form = RequestForm()
+    if request.method == 'POST':
+        # print('Printing POST:', request.POST)
+        form = RequestForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
+    return render(request, "request_form.html", context)
+
+
+def updateTestRequest(request, id):
+    order = Request.objects.get(id=id)
+    form = RequestForm(instance=order)
+
+    if request.method == 'POST':
+        form = RequestForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
+    return render(request, "request_form.html", context)
+
+
+def deleteTestRequest(request, id):
+    order = Request.objects.get(id=id)
+    context = {'item': order.lab_test.name}
+    return render(request, 'delete_request.html', context)
