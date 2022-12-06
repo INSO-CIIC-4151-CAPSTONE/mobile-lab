@@ -85,8 +85,8 @@ class Request(models.Model):
     lab_test = models.ForeignKey(Test, on_delete=models.CASCADE)
     date_and_time = models.DateTimeField()  # YYYY-MM-DD HH:MM
     patient = models.ForeignKey(User, related_name='request_patient', on_delete=models.CASCADE)
-    technician = models.ForeignKey(User, related_name='request_technician', on_delete=models.CASCADE)
-    status = models.CharField(max_length=50, choices=REQUEST_STATUS_CHOICES)
+    technician = models.ForeignKey(User, related_name='request_technician', on_delete=models.CASCADE, null=True)
+    status = models.CharField(max_length=50, choices=REQUEST_STATUS_CHOICES, default='PENDING')
     comments = models.CharField(max_length=1024, default='')
     modality = models.CharField(max_length=50, choices=MODALITY_CHOICES, default='IN-HOME')
 
