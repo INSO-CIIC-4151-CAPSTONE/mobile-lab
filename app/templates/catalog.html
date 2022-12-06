@@ -1,0 +1,48 @@
+{%  extends 'main.html' %}
+{%  load static %}
+
+{% block content %}
+
+ <!DOCTYPE html>
+    <html>
+    <head>
+     <section>
+  <!--for demo wrap-->
+      <link href="{% static 'css/catalog.css' %}"rel="stylesheet" />
+  <h1>Laboratory Blood Tests</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Test Name</th>
+          <th>Description</th>
+          <th>Requirements</th>
+          <th>Price</th>
+            <th> Request Test</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+         {% for i in tests %}
+        <tr>
+                <td>{{i.name }}</td>
+                <td>{{i.description}}</td>
+                <td>{{i.requirements}}</td>
+                <td>{{i.price}}</td>
+
+                <td>
+                    <a href= "/request/{{ i.id }}">Select</a>
+                </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+    </head>
+    </html>
+
+{% endblock %}

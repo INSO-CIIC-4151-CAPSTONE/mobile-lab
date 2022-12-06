@@ -1,0 +1,12 @@
+{% load static %}
+{% block contect %}
+
+<p> Are you sure you want to cancel the "{{ item }} test request?</p>
+
+<form action="{% url 'delete_request' item.id %}" method="POST">
+{% csrf_token %}
+
+    <a href="{% url 'profile' %}"> Cancel</a>
+    <input type="submit" name="Confirm">
+</form>
+{% endblock %}
