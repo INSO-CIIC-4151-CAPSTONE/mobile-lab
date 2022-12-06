@@ -13,7 +13,7 @@
   --dl-space-space-sixunits: 96px;
   --dl-space-space-twounits: 32px;
   --dl-color-scheme-green100: #0c4237ff;
-  --dl-color-scheme-yellow20: #fffef3ff;
+  --dl-color-scheme-yellow20: rgba(255, 254, 243, 0.82);
   --dl-radius-radius-radius2: 2px;
   --dl-radius-radius-radius4: 4px;
   --dl-radius-radius-radius8: 8px;
@@ -68,31 +68,26 @@
   transform: none !important;
 }
 .button-secondary {
-  font-style: normal;
+  color: var(--dl-color-scheme-green100);
   transition: 0.3s;
-  font-family: Lexend;
-  font-weight: 500;
-  line-height: 1;
-  border-color: #105749ff;
-  margin-right: var(--dl-space-space-unit);
+  border-color: var(--dl-color-scheme-green100);
+  text-decoration: none;
+  background-color: rgb(255, 255, 255);
 }
 .button-secondary:hover {
   color: var(--dl-color-scheme-white);
-  background-color: #ffad61ff;
+  background-color: #611b7f;
 }
 .button-primary {
-  color: var(--dl-color-scheme-white);
-  font-style: normal;
+  color: var(--dl-color-scheme-green100);
   transition: 0.3s;
-  font-family: Lexend;
-  font-weight: 500;
-  line-height: 1;
-  border-color: #105749ff;
-  background-color: #105749ff;
+  border-color: var(--dl-color-scheme-green100);
+  text-decoration: none;
+  background-color: rgb(255, 255, 255);
 }
 .button-primary:hover {
-  color: #105749ff;
-  background-color: #c7ff9bff;
+  color: #ffffff;
+  background-color: #611b7f;
 }
 .navbar-container {
   top: 0;
@@ -126,12 +121,9 @@
   align-items: center;
   font-weight: 700;
   line-height: 0.9;
-  padding-top: 20px;
   border-color: transparent;
   margin-right: var(--dl-space-space-unit);
-  padding-left: 32px;
-  padding-right: 32px;
-  padding-bottom: 20px;
+  padding: 20px 32px;
 }
 .button-gradient:hover {
   color: var(--dl-color-scheme-white);
@@ -181,15 +173,12 @@
   width: 100%;
   display: flex;
   align-items: center;
-  padding-top: 20px;
   border-color: rgba(44, 39, 33, 0.08);
   border-width: 1px;
-  padding-left: var(--dl-space-space-twounits);
   border-radius: 12px;
   margin-bottom: var(--dl-space-space-unit);
-  padding-right: var(--dl-space-space-twounits);
   flex-direction: column;
-  padding-bottom: 20px;
+  padding: 20px var(--dl-space-space-twounits);
   justify-content: space-between;
   background-color: var(--dl-color-scheme-white);
 }

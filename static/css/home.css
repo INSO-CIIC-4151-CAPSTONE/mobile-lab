@@ -194,7 +194,7 @@
   left: 21px;
   color: rgb(0, 0, 0);
   margin: auto;
-  position: absolute;
+  position: fixed;
   font-size: 10px;
   font-family: Titillium Web;
 }

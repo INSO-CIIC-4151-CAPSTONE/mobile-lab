@@ -38,7 +38,7 @@ def register_page(request):
     return render(request, 'register.html')
 
 
-def login_view(request):
+def login_page(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
@@ -55,11 +55,13 @@ def login_view(request):
     return render(request, 'login.html')
 
 
-def home_view(request):
+def home_page(request):
     return render(request, 'home.html')
 
 
-def profile_view(request):
+def profile_page(request):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
     if request.method == 'POST':
         logout_request = request.POST.get('logout', None)
 
@@ -76,11 +78,11 @@ def profile_view(request):
     return render(request, 'profile.html', context)
 
 
-def about_view(request):
+def about_page(request):
     return render(request, 'about.html')
 
 
-def contact_view(request):
+def contact_page(request):
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
@@ -90,30 +92,42 @@ def contact_view(request):
 
         message_obj.save()
         messages.Info(request, 'Message sent!')
-        return redirect('/')
+        if request.user.is_authenticated:
+            return redirect('profile')
+        else:
+            return redirect('/')
 
     return render(request, 'contact.html')
 
 
-def test_view(request):
+def labTests(request):
     tests = Test.objects.all()
     return render(request, 'catalog.html', {'tests': tests})
 
 
-def createTestRequest(request):
+def testList_page(request):
+    tests = Test.objects.all()
+    return render(request, 'testsList.html', {'tests': tests})
+
+
+def createTestRequest(request, id):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
     form = RequestForm()
     if request.method == 'POST':
         # print('Printing POST:', request.POST)
         form = RequestForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('profile')
 
     context = {'form': form}
     return render(request, "request_form.html", context)
 
 
 def updateTestRequest(request, id):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
     order = Request.objects.get(id=id)
     form = RequestForm(instance=order)
 
@@ -121,13 +135,18 @@ def updateTestRequest(request, id):
         form = RequestForm(request.POST, instance=order)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('profile')
 
     context = {'form': form}
     return render(request, "request_form.html", context)
 
 
 def deleteTestRequest(request, id):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
     order = Request.objects.get(id=id)
+    if request.method == "POST":
+        order.delete()
+        return redirect('profile')
     context = {'item': order.lab_test.name}
     return render(request, 'delete_request.html', context)
