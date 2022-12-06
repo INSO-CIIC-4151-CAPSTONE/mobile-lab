@@ -9,24 +9,19 @@
   --dl-color-scheme-white: #FFFFFF;
   --dl-size-size-maxwidth: 1144px;
   --dl-radius-radius-round: 50%;
-  --dl-color-scheme-green80: #105749ff;
   --dl-space-space-halfunit: 8px;
   --dl-space-space-sixunits: 96px;
   --dl-space-space-twounits: 32px;
   --dl-color-scheme-green100: #0c4237ff;
-  --dl-color-scheme-orange80: #ffc78bff;
-  --dl-color-scheme-yellow20: #fffef3ff;
-  --dl-color-scheme-yellow80: #fff6a7ff;
+  --dl-color-scheme-yellow20: rgba(255, 254, 243, 0.82);
   --dl-radius-radius-radius2: 2px;
   --dl-radius-radius-radius4: 4px;
   --dl-radius-radius-radius8: 8px;
   --dl-space-space-fiveunits: 80px;
   --dl-space-space-fourunits: 64px;
-  --dl-color-scheme-orange100: #ffad61ff;
   --dl-radius-radius-radius16: 16px;
   --dl-space-space-eightunits: 128px;
   --dl-space-space-threeunits: 48px;
-  --dl-color-scheme-lightgreen: #c7ff9bff;
   --dl-space-space-oneandhalfunits: 24px;
 }
 .button {
@@ -70,33 +65,29 @@
 }
 .teleport-show {
   display: flex !important;
+  transform: none !important;
 }
 .button-secondary {
-  font-style: normal;
+  color: var(--dl-color-scheme-green100);
   transition: 0.3s;
-  font-family: Lexend;
-  font-weight: 500;
-  line-height: 1;
-  border-color: var(--dl-color-scheme-green80);
-  margin-right: var(--dl-space-space-unit);
+  border-color: var(--dl-color-scheme-green100);
+  text-decoration: none;
+  background-color: rgb(255, 255, 255);
 }
 .button-secondary:hover {
   color: var(--dl-color-scheme-white);
-  background-color: var(--dl-color-scheme-orange100);
+  background-color: #611b7f;
 }
 .button-primary {
-  color: var(--dl-color-scheme-white);
-  font-style: normal;
+  color: var(--dl-color-scheme-green100);
   transition: 0.3s;
-  font-family: Lexend;
-  font-weight: 500;
-  line-height: 1;
-  border-color: var(--dl-color-scheme-green80);
-  background-color: var(--dl-color-scheme-green80);
+  border-color: var(--dl-color-scheme-green100);
+  text-decoration: none;
+  background-color: rgb(255, 255, 255);
 }
 .button-primary:hover {
-  color: var(--dl-color-scheme-green80);
-  background-color: var(--dl-color-scheme-lightgreen);
+  color: #ffffff;
+  background-color: #611b7f;
 }
 .navbar-container {
   top: 0;
@@ -130,12 +121,9 @@
   align-items: center;
   font-weight: 700;
   line-height: 0.9;
-  padding-top: 20px;
   border-color: transparent;
   margin-right: var(--dl-space-space-unit);
-  padding-left: 32px;
-  padding-right: 32px;
-  padding-bottom: 20px;
+  padding: 20px 32px;
 }
 .button-gradient:hover {
   color: var(--dl-color-scheme-white);
@@ -154,8 +142,8 @@
   background-color: transparent;
 }
 .button-transparent:hover {
-  color: var(--dl-color-scheme-green80);
-  background-color: var(--dl-color-scheme-lightgreen);
+  color: #105749ff;
+  background-color: #c7ff9bff;
 }
 .section-container {
   width: 100%;
@@ -168,7 +156,7 @@
 }
 .hero-container {
   padding-top: 0 !important;
-  background-color: var(--dl-color-scheme-green80);
+  background-color: #105749ff;
 }
 .bg-transparent {
   background-color: transparent;
@@ -202,7 +190,7 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-.before-Heading {
+.beforeHeading {
   font-size: 14px;
   font-style: normal;
   font-family: Urbanist;
@@ -212,7 +200,7 @@
   text-transform: uppercase;
   text-decoration: none;
 }
-.brand-Name {
+.brandName {
   font-size: 20px;
   font-style: normal;
   font-family: Urbanist;
@@ -222,7 +210,7 @@
   text-transform: uppercase;
   text-decoration: none;
 }
-.navbar-Link {
+.navbarLink {
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -231,29 +219,11 @@
   text-transform: none;
   text-decoration: none;
 }
-.content {
+.Content {
   font-size: 16px;
   font-family: Titillium Web;
   font-weight: 400;
   line-height: 1.15;
   text-transform: none;
   text-decoration: none;
-}
-
-@media(max-width: 767px) {
-  .navbar-burger-menu {
-    display: flex;
-  }
-  .section-container {
-    padding-top: var(--dl-space-space-fourunits);
-    padding-bottom: var(--dl-space-space-fourunits);
-  }
-  .footer-column {
-    width: 30%;
-  }
-}
-@media(max-width: 479px) {
-  .footer-column {
-    width: 50%;
-  }
 }
