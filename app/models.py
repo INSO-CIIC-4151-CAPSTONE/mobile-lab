@@ -84,9 +84,9 @@ class Test(models.Model):
 
 class Request(models.Model):
     requested_date = models.DateTimeField(auto_now_add=True)
-    date = models.DateField(default='DD/MM/YYYY')
-    hour = models.TimeField(default='00:00')
     lab_test = models.ForeignKey(Test, null=True, on_delete=models.CASCADE)
+    date = models.DateField(default='00/00/0000')
+    hour = models.TimeField()
     patient = models.ForeignKey(User, related_name='request_patient', on_delete=models.CASCADE)
     technician = models.ForeignKey(User, related_name='request_technician', null=True, on_delete=models.CASCADE)
     status = models.CharField(max_length=50, choices=REQUEST_STATUS_CHOICES, default='PENDING')

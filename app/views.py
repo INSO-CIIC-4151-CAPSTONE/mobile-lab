@@ -145,9 +145,9 @@ def createTestRequest(request, id):
         lab_test = Test.objects.get(id=id)
         modality = request.POST['modality']
         date = request.POST['date']
-        time = request.POST['time']
+        hour = request.POST['hour']
 
-        request_obj = Request.objects.create(lab_test=lab_test, modality=modality, date=date, time=time,
+        request_obj = Request.objects.create(lab_test=lab_test, modality=modality, date=date, hour=hour,
                                              patient=current_user)
 
         request_obj.save()
