@@ -2,14 +2,12 @@ from django.contrib.auth import login, logout
 from django.core.checks import messages
 from django.core.exceptions import DisallowedRedirect
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.db import *
-
-# Create your views here.
 from app.models import User, Test, Request
 from app.models import Message
-from app.forms import RequestForm
+
+''' © 2022 Mobile-Lab, All Rights Reserved. '''
 
 
 def register_page(request):
@@ -73,7 +71,7 @@ def profile_page(request):
     context = {'name': name,
                'gender': request.user.gender,
                'address': request.user.address,
-               'phone-number': request.user.phone_number,
+               'phonenumber': request.user.phone_number,
                }
     return render(request, 'profile.html', context)
 
@@ -92,16 +90,43 @@ def contact_page(request):
 
         message_obj.save()
         messages.Info(request, 'Message sent!')
-        if request.user.is_authenticated:
-            return redirect('profile')
-        else:
-            return redirect('/')
+        return redirect('/')
 
     return render(request, 'contact.html')
 
 
+def user_contact_page(request):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        message_str = request.POST['message']
+
+        message_obj = Message.objects.create(name=name, email=email, message=message_str)
+
+        message_obj.save()
+        messages.Info(request, 'Message sent!')
+
+    return render(request, 'usercontact.html')
+
+
 def labTests(request):
     tests = Test.objects.all()
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
     return render(request, 'catalog.html', {'tests': tests})
 
 
@@ -113,16 +138,23 @@ def testList_page(request):
 def createTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
-    form = RequestForm()
-    if request.method == 'POST':
-        # print('Printing POST:', request.POST)
-        form = RequestForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
+    name = Test.objects.filter(id=id).get().name
+    current_user = request.user.id
 
-    context = {'form': form}
-    return render(request, "request_form.html", context)
+    if request.method == 'POST':
+        lab_test = Test.objects.get(id=id)
+        modality = request.POST['modality']
+        date = request.POST['date']
+
+        request_obj = Request.objects.create(lab_test=lab_test, modality=modality, date=date,
+                                             user=current_user)
+
+        request_obj.save()
+
+        messages.Info(request, 'Test requested!')
+        return redirect('profile')
+
+    return render(request, 'request_form.html', {'name': name})
 
 
 def updateTestRequest(request, id):
