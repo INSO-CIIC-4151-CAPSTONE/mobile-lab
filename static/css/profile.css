@@ -24,6 +24,7 @@
   margin: auto;
   position: absolute;
   align-self: stretch;
+  border-radius: 50%;
 }
 .profile-title {
   top: 282px;

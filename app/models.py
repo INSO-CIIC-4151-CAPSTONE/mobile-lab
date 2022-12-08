@@ -60,13 +60,13 @@ class HealthCarePlan(models.Model):
 
 
 class User(AbstractUser):
-    role = models.CharField(max_length=50, choices=USER_ROLE_CHOICES)
-    health_care_plan = models.ForeignKey(HealthCarePlan, on_delete=models.CASCADE, null=True)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
-    phone_number = models.CharField(max_length=50, null=True)
-    employer_lab = models.ForeignKey(Laboratory, on_delete=models.CASCADE, null=True)
-    gender = models.CharField(max_length=50, choices=GENDER_CHOICES, default='', null=True)
-    profile_picture = models.ImageField(upload_to='profile_images/', null=True)
+    role = models.CharField(max_length=50, choices=USER_ROLE_CHOICES, blank=True, default='PATIENT')
+    health_care_plan = models.ForeignKey(HealthCarePlan, on_delete=models.CASCADE, null=True, blank=True)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True, blank=True)
+    phone_number = models.CharField(max_length=50, null=True, blank=True)
+    employer_lab = models.ForeignKey(Laboratory, on_delete=models.CASCADE, null=True, blank=True)
+    gender = models.CharField(max_length=50, choices=GENDER_CHOICES, default='', null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_images/', null=True, blank=True)
 
 
 class Card(models.Model):
