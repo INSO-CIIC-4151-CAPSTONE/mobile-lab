@@ -68,12 +68,17 @@ def profile_page(request):
         if request.user.is_authenticated and logout_request is not None:
             logout(request)
             return redirect('/')
+    try:
+        ppic = request.user.profile_picture.url
+    except ValueError:
+        ppic = "/static/img/user.png"
 
     name = request.user.first_name + ' ' + request.user.last_name
     context = {'name': name,
                'gender': request.user.gender,
                'address': request.user.address,
                'phone-number': request.user.phone_number,
+               'ppic': ppic,
                }
     return render(request, 'profile.html', context)
 
