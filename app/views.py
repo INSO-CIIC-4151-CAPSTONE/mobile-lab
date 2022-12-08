@@ -139,15 +139,16 @@ def createTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
     name = Test.objects.filter(id=id).get().name
-    current_user = request.user.id
+    current_user = User.objects.filter(role='Patient').get(id=request.user.id)
 
     if request.method == 'POST':
         lab_test = Test.objects.get(id=id)
         modality = request.POST['modality']
         date = request.POST['date']
+        time = request.POST['time']
 
-        request_obj = Request.objects.create(lab_test=lab_test, modality=modality, date=date,
-                                             user=current_user)
+        request_obj = Request.objects.create(lab_test=lab_test, modality=modality, date=date, time=time,
+                                             patient=current_user)
 
         request_obj.save()
 
@@ -157,7 +158,7 @@ def createTestRequest(request, id):
     return render(request, 'request_form.html', {'name': name})
 
 
-def updateTestRequest(request, id):
+'''def updateTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
     order = Request.objects.get(id=id)
@@ -181,4 +182,4 @@ def deleteTestRequest(request, id):
         order.delete()
         return redirect('profile')
     context = {'item': order.lab_test.name}
-    return render(request, 'delete_request.html', context)
+    return render(request, 'delete_request.html', context)'''

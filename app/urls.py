@@ -14,8 +14,6 @@ urlpatterns = [
     path('usercontact/', views.user_contact_page, name='usercontact'),
     path('catalog/', views.labTests, name='catalog'),
     path('request/<str:id>', views.createTestRequest, name='request'),
-    path('update_request/<str:id>', views.updateTestRequest, name='update_request'),
-    path('delete_request/<str:id>', views.deleteTestRequest, name='delete_request'),
     path('testsList/', views.testList_page, name='testList')
 
 ]

@@ -1,16 +1,13 @@
 {%  extends 'main.html' %}
 {%  load static %}
-<br>
-<br>
-<br>
-{% block title %} Request Test {% endblock %}
 
 {% block content %}
+<!DOCTYPE html>
 <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
 <html>
 
 <head>
-    <title>Login</title>
+    <title>Contact</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
@@ -48,7 +45,7 @@
             /* Link to your background image using in the property below! */
             background: #401b6d;
             /* background: scroll center url('/static/img/contact.jpg'); */
-            background: center url('/static/img/30068052.jpg');
+            background: center url('/static/img/contact.jpg');
             /* background-size: 575px 520px; */
             background-size: cover;
         }
@@ -57,13 +54,13 @@
             padding: 2rem;
             display: flex;
             flex-direction: column;
-            height: 85%;
+            height: 100%;
             justify-content: center;
             align-items: center;
         }
 
         .contact-form {
-            width: 85%;
+            width: 100%;
         }
 
         .contact-form .btn {
@@ -156,31 +153,24 @@
                     <!-- Background image for card set in CSS! -->
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title text-center">Request Blood Lab Test</h5>
+                    <h5 class="card-title text-center">Contact Us!</h5>
                     <form method="POST" class="contact-form">
                         {% csrf_token %}
+                        <div class="form-label-group">
+                            <input type="text" id="name" class="form-control" placeholder="Full name" name="name" required />
+                            <label for="name">Full Name</label>
+                        </div>
 
                         <div class="form-label-group">
-                            <span> Test Name: {{ name }}</span>
+                            <input type="email" id="email" class="form-control" placeholder="Email address" name="email" required />
+                            <label for="email">Email Address</label>
                         </div>
 
-                           <div class="form-label-group">
-                            <input type="date" id="date" class="form-control" placeholder=" " name="date" required />
-                            <label for="date">Select Date</label>
-                        </div>
                         <div class="form-label-group">
-                            <input type="time" id="time" class="form-control" placeholder=" " name="time" required />
-                            <label for="time">Select Hour</label>
+                            <textarea rows="3" id="message" class="form-control" placeholder="Type message here..." name="message" required></textarea>
+                            <!-- <label for="message">Message</label> -->
                         </div>
-                        <div class="form-label-group">
-                            <textarea rows="3" id="comments" class="form-control" placeholder="Type comments here..." name="comments" required></textarea>
-                            <!-- <label for="comments">Comments</label> -->
-                        </div>
-                        <label for="modality">Modality</label>
-                        <select name="modality" id="modality">
-                            <option value="IN-HOME">IN-HOME</option>
-                            <option value="IN-LAB">IN-LAB</option>
-                        </select>
+
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Submit</button>
                     </form>
                 </div>
@@ -192,4 +182,3 @@
 
 </html>
 {% endblock %}
-
