@@ -9,7 +9,7 @@ from django.db import *
 # Create your views here.
 from app.models import User, Test, Request
 from app.models import Message
-from app.forms import RequestForm
+from app.forms import *
 
 
 def register_page(request):
@@ -77,11 +77,39 @@ def profile_page(request):
     context = {'name': name,
                'gender': request.user.gender,
                'address': request.user.address,
-               'phone-number': request.user.phone_number,
+               'phone': request.user.phone_number,
                'ppic': ppic,
                }
     return render(request, 'profile.html', context)
 
+def edit_profile(request):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+    try:
+        ppic = request.user.profile_picture.url
+    except ValueError:
+        ppic = "/static/img/user.png"
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user)
+        user = User.objects.get(id=request.user.id)
+        # user.profile_picture = form
+
+        if form.is_valid():
+            
+            return redirect('profile')
+        print(form.cleaned_data)
+
+    context = {
+        'fname': request.user.first_name,
+        'lname': request.user.last_name,
+        'gender': request.user.gender,
+        'address': request.user.address,
+        'phone-number': request.user.phone_number,
+        'ppic': ppic,
+        'form': UserProfileForm(instance=request.user),
+    }
+    return render(request, 'edit_profile.html', context)
 
 def about_page(request):
     return render(request, 'about.html')
