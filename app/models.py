@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 
+''' © 2022 Mobile-Lab, All Rights Reserved. '''
+
 GENDER_CHOICES = (
     ('M', 'Male'),
     ('F', 'Female')
@@ -82,10 +84,11 @@ class Test(models.Model):
 
 class Request(models.Model):
     requested_date = models.DateTimeField(auto_now_add=True)
-    lab_test = models.ForeignKey(Test, on_delete=models.CASCADE)
-    date_and_time = models.DateTimeField()  # YYYY-MM-DD HH:MM
+    lab_test = models.ForeignKey(Test, null=True, on_delete=models.CASCADE)
+    date = models.DateField(default='00/00/0000')
+    hour = models.TimeField()
     patient = models.ForeignKey(User, related_name='request_patient', on_delete=models.CASCADE)
-    technician = models.ForeignKey(User, related_name='request_technician', on_delete=models.CASCADE, null=True)
+    technician = models.ForeignKey(User, related_name='request_technician', null=True, on_delete=models.CASCADE)
     status = models.CharField(max_length=50, choices=REQUEST_STATUS_CHOICES, default='PENDING')
     comments = models.CharField(max_length=1024, default='')
     modality = models.CharField(max_length=50, choices=MODALITY_CHOICES, default='IN-HOME')
@@ -95,7 +98,7 @@ class Appointment(models.Model):
     date_and_time = models.DateTimeField()  # YYYY-MM-DD HH:MM
     patient = models.ForeignKey(User, related_name='appointment_patient', on_delete=models.CASCADE)
     technician = models.ForeignKey(User, related_name='appointment_technician', on_delete=models.CASCADE)
-    Laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE)
+    laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE)
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
     request = models.ForeignKey(Request, on_delete=models.CASCADE)
     comments = models.CharField(max_length=1024, default='')
@@ -110,4 +113,5 @@ class TestResult(models.Model):
 class Message(models.Model):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
+    subject = models.CharField(max_length=100)
     message = models.CharField(max_length=4000)

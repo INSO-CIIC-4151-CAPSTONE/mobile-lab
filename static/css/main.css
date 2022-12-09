@@ -12,7 +12,7 @@
   background-color: #ffffff;
   border-left-width: 0px;
   border-right-width: 0px;
-  border-bottom-width: 2x;
+  border-bottom-width: 2px;
 }
 .main-logo {
   display: flex;
@@ -36,7 +36,7 @@
   flex-direction: row;
 }
 .main-profile {
-  color: rgb(162, 47, 162);
+  color: rgb(97, 27, 127);
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -47,7 +47,7 @@
   text-decoration: none;
 }
 .main-about {
-  color: #a22fa2;
+  color: #611b7f;
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -58,7 +58,7 @@
   text-decoration: none;
 }
 .main-test {
-  color: rgb(162, 47, 162);
+  color: rgb(97, 27, 127);
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -69,7 +69,7 @@
   text-decoration: none;
 }
 .main-contact {
-  color: rgb(162, 47, 162);
+  color: rgb(97, 27, 127);
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -86,10 +86,11 @@
   transition: 0.3s;
   font-family: Titillium Web;
   border-color: #611b7f;
-  background-color: rgb(23, 144, 96);
+  background-color: rgb(20, 140, 92);
 }
 .main-login:hover {
   background-color: #58236b;
+  border-color: #179060;
 }
 .main-footer {
   left: 0px;
@@ -136,7 +137,7 @@
   right: 0px;
   width: 20px;
   bottom: 0px;
-  height: 20;
+  height: 20px;
   margin: auto;
   position: absolute;
 }
