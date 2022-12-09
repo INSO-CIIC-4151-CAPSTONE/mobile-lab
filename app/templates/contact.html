@@ -1,320 +1,85 @@
+{%  extends 'homemain.html' %}
 {% load static %}
+{% block content %}
+
+
 <!DOCTYPE html>
 <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
 <html lang="en">
-  <head>
-    <title>MobiLab</title>
-    <meta property="og:title" content="MobiLab" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <meta property="twitter:card" content="summary_large_image" />
+<head>
+	<title>Contact Us!</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style data-tag="reset-style-sheet">
-      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
-    </style>
-    <style data-tag="default-style-sheet">
-      html {
-        font-family: Titillium Web;
-        font-size: 16px;
-      }
+<!--===============================================================================================-->
 
-      body {
-        font-weight: 400;
-        font-style:normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: normal;
-        line-height: 1.15;
-        color: var(--dl-color-scheme-green100);
-        background-color: var(--dl-color-scheme-yellow20);
+	<link rel="stylesheet" type="text/css" href="/static/css/contact.css">
+<!--===============================================================================================-->
+</head>
+<body>
 
-      }
-    </style>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
-      data-tag="font"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&amp;display=swap"
-      data-tag="font"
-    />
-    <!--This is the head section-->
-    <!-- <script type="text/javascript"> ... </script> -->
-    <style data-section-id="dropdown">
-      [data-thq="thq-dropdown"]:hover > [data-thq="thq-dropdown-list"] {
-          display: flex;
-        }
+	<div class="contact1">
+		<div class="container-contact1">
+			<div class="contact1-pic js-tilt" data-tilt>
+				<img src="/static/img/img-01.png" alt="IMG">
+			</div>
 
-        [data-thq="thq-dropdown"]:hover > div [data-thq="thq-dropdown-arrow"] {
-          transform: rotate(90deg);
-        }
-    </style>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
-  </head>
-  <body>
-    <div>
-      <link href="{% static 'css/home.css' %}" rel="stylesheet" />
-        <div class="home-navbar navbar-container">
-          <div class="max-width">
-            <div class="home-logo">
-              <img
-                src="{% static 'img/image-1200w.png' %}"
-                class="home-image"
-              />
-              <span class="home-text">MOBILE-LAB</span>
-            </div>
-            <div class="home-links">
-              <button class="home-home" onclick="location.href='/home'">
-                HOME
-              </button>
-              <button class="home-about" onclick="location.href='/about'">
-                ABOUT
-              </button>
-              <button class="home-test" onclick="location.href='/testsList'">
-                TESTS
-              </button>
-              <button class="home-contact" onclick="location.href='/contact'">
-                CONTACT
-              </button>
-               <button class="home-login button-secondary button" onclick="location.href='/login'">
-                &nbsp; LOG IN
-              </button>
-            </div>
-          </div>
-        </div>
-<link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
-        <title>Contact</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+			<form class="contact1-form validate-form">
+				<span class="contact1-form-title">
+					Contact Us!
+				</span>
 
+				<div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<input class="input1" type="text" name="name" placeholder="Name">
+					<span class="shadow-input1"></span>
+				</div>
 
-        <style>
-            :root {
-                --input-padding-x: 1.5rem;
-                --input-padding-y: .75rem;
-            }
+				<div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<input class="input1" type="text" name="email" placeholder="Email">
+					<span class="shadow-input1"></span>
+				</div>
 
-            body {
-                background: #fafafa;;
-            }
+				<div class="wrap-input1 validate-input" data-validate = "Subject is required">
+					<input class="input1" type="text" name="subject" placeholder="Subject">
+					<span class="shadow-input1"></span>
+				</div>
 
-            .card-contact {
-                border: 0;
-                /* width: 80vw; */
-                border-radius: 1rem;
-                box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-                overflow: hidden;
-                height: 100%;
-            }
+				<div class="wrap-input1 validate-input" data-validate = "Message is required">
+					<textarea class="input1" name="message" placeholder="Message"></textarea>
+					<span class="shadow-input1"></span>
+				</div>
 
-            .card-contact .card-title {
-                margin-bottom: 2rem;
-                font-weight: 300;
-                font-size: 1.5rem;
-            }
+				<div class="container-contact1-form-btn">
+					<button class="contact1-form-btn">
+						<span>
+							Send Email
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
 
-            .card-contact .card-img-left {
-                width: 55%;
-                height: auto;
-                /* max-height: 40%; */
-                /* Link to your background image using in the property below! */
-                background: #401b6d;
-                /* background: scroll center url('/static/img/contact.jpg'); */
-                background: center url('/static/img/contact.jpg');
-                /* background-size: 575px 520px; */
-                background-size: cover;
-            }
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
 
-            .card-contact .card-body {
-                padding: 2rem;
-                display: flex;
-                flex-direction: column;
-                height: 100%;
-                justify-content: center;
-                align-items: center;
-            }
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-            .contact-form {
-                width: 100%;
-            }
+  gtag('config', 'UA-23581568-13');
+</script>
 
-            .contact-form .btn {
-                font-size: 80%;
-                border-radius: 5rem;
-                letter-spacing: .1rem;
-                font-weight: bold;
-                padding: 1rem;
-                transition: all 0.2s;
-            }
+<!--===============================================================================================-->
+	<script src="/static/js/contact.js"></script>
 
-            .form-label-group {
-                position: relative;
-                margin-bottom: 1rem;
-            }
-
-            .form-label-group input {
-                height: auto;
-                border-radius: 2rem;
-            }
-
-            .form-label-group>input,
-            .form-label-group>label {
-                padding: var(--input-padding-y) var(--input-padding-x);
-            }
-
-            .form-label-group>label {
-                position: absolute;
-                top: 0;
-                left: 0;
-                display: block;
-                width: 100%;
-                margin-bottom: 0;
-                /* Override default `<label>` margin */
-                line-height: 1.5;
-                color: #495057;
-                border: 1px solid transparent;
-                border-radius: .25rem;
-                transition: all .1s ease-in-out;
-            }
-
-            .form-label-group input::-webkit-input-placeholder {
-                color: transparent;
-            }
-
-            .form-label-group input:-ms-input-placeholder {
-                color: transparent;
-            }
-
-            .form-label-group input::-ms-input-placeholder {
-                color: transparent;
-            }
-
-            .form-label-group input::-moz-placeholder {
-                color: transparent;
-            }
-
-            .form-label-group input::placeholder {
-                color: transparent;
-            }
-
-            .form-label-group input:not(:placeholder-shown) {
-                padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
-                padding-bottom: calc(var(--input-padding-y) / 3);
-            }
-
-            .form-label-group input:not(:placeholder-shown)~label {
-                padding-top: calc(var(--input-padding-y) / 3);
-                padding-bottom: calc(var(--input-padding-y) / 3);
-                font-size: 12px;
-                color: #777;
-            }
-            @media(max-width: 991px) {
-                .card-contact {
-                    width: 90vw;
-                    margin-left: -10vw;
-                    margin-right: auto;
-                }
-            }
-
-        </style>
-    </div>
-  </body>
-</html>
-
-        <body>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12 col-xl-12 mx-auto">
-            <div class="card card-contact flex-row my-5">
-                <div class="card-img-left d-none d-md-flex">
-                    <!-- Background image for card set in CSS! -->
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Contact Us!</h5>
-                    <form method="POST" class="contact-form">
-                        {% csrf_token %}
-                        <div class="form-label-group">
-                            <input type="text" id="name" class="form-control" placeholder="Full name" name="name" required />
-                            <label for="name">Full Name</label>
-                        </div>
-
-                        <div class="form-label-group">
-                            <input type="email" id="email" class="form-control" placeholder="Email address" name="email" required />
-                            <label for="email">Email Address</label>
-                        </div>
-
-                        <div class="form-label-group">
-                            <textarea rows="3" id="message" class="form-control" placeholder="Type message here..." name="message" required></textarea>
-                            <!-- <label for="message">Message</label> -->
-                        </div>
-
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 </body>
- <footer class="home-footer">
-            <img
-              alt="logo"
-               src="{% static 'img/image-1200w.png' %}"
-              class="home-image1"
-            />
-            <span class="home-text1">MOBILE - LAB</span>
-            <svg viewBox="0 0 877.7142857142857 1024" class="home-icon">
-              <path
-                d="M438.857 73.143c242.286 0 438.857 196.571 438.857 438.857 0 193.714-125.714 358.286-300 416.571-22.286 4-30.286-9.714-30.286-21.143 0-14.286 0.571-61.714 0.571-120.571 0-41.143-13.714-67.429-29.714-81.143 97.714-10.857 200.571-48 200.571-216.571 0-48-17.143-86.857-45.143-117.714 4.571-11.429 19.429-56-4.571-116.571-36.571-11.429-120.571 45.143-120.571 45.143-34.857-9.714-72.571-14.857-109.714-14.857s-74.857 5.143-109.714 14.857c0 0-84-56.571-120.571-45.143-24 60.571-9.143 105.143-4.571 116.571-28 30.857-45.143 69.714-45.143 117.714 0 168 102.286 205.714 200 216.571-12.571 11.429-24 30.857-28 58.857-25.143 11.429-89.143 30.857-127.429-36.571-24-41.714-67.429-45.143-67.429-45.143-42.857-0.571-2.857 26.857-2.857 26.857 28.571 13.143 48.571 64 48.571 64 25.714 78.286 148 52 148 52 0 36.571 0.571 70.857 0.571 81.714 0 11.429-8 25.143-30.286 21.143-174.286-58.286-300-222.857-300-416.571 0-242.286 196.571-438.857 438.857-438.857zM166.286 703.429c1.143-2.286-0.571-5.143-4-6.857-3.429-1.143-6.286-0.571-7.429 1.143-1.143 2.286 0.571 5.143 4 6.857 2.857 1.714 6.286 1.143 7.429-1.143zM184 722.857c2.286-1.714 1.714-5.714-1.143-9.143-2.857-2.857-6.857-4-9.143-1.714-2.286 1.714-1.714 5.714 1.143 9.143 2.857 2.857 6.857 4 9.143 1.714zM201.143 748.571c2.857-2.286 2.857-6.857 0-10.857-2.286-4-6.857-5.714-9.714-3.429-2.857 1.714-2.857 6.286 0 10.286s7.429 5.714 9.714 4zM225.143 772.571c2.286-2.286 1.143-7.429-2.286-10.857-4-4-9.143-4.571-11.429-1.714-2.857 2.286-1.714 7.429 2.286 10.857 4 4 9.143 4.571 11.429 1.714zM257.714 786.857c1.143-3.429-2.286-7.429-7.429-9.143-4.571-1.143-9.714 0.571-10.857 4s2.286 7.429 7.429 8.571c4.571 1.714 9.714 0 10.857-3.429zM293.714 789.714c0-4-4.571-6.857-9.714-6.286-5.143 0-9.143 2.857-9.143 6.286 0 4 4 6.857 9.714 6.286 5.143 0 9.143-2.857 9.143-6.286zM326.857 784c-0.571-3.429-5.143-5.714-10.286-5.143-5.143 1.143-8.571 4.571-8 8.571 0.571 3.429 5.143 5.714 10.286 4.571s8.571-4.571 8-8z"
-              ></path>
-            </svg>
-            <span class="home-text2">
-              © 2022 Mobile-Lab, All Rights Reserved.
-            </span>
-          </footer>
-    <script>
-      window.onload = () => {
-        const runAllScripts = () => {
-          initializeAllAccordions()
-        }
-
-        const listenForUrlChanges = () => {
-          let url = location.href
-          document.body.addEventListener(
-            'click',
-            () => {
-              requestAnimationFrame(() => {
-                if (url !== location.href) {
-                  runAllScripts()
-                  url = location.href
-                }
-              })
-            },
-            true
-          )
-        }
-
-        const initializeAllAccordions = () => {
-          const allAccordions = document.querySelectorAll('[data-role="Accordion"]');
-
-          allAccordions.forEach((accordion) => {
-            const accordionHeader = accordion.querySelector('[data-type="accordion-header"]')
-            const accordionContent = accordion.querySelector('[data-type="accordion-content"]')
-
-            accordionHeader.addEventListener('click', () => {
-              if (accordionContent.style.maxHeight) {
-                accordionContent.style.maxHeight = ''
-              } else {
-                accordionContent.style.maxHeight = `${accordionContent.scrollHeight}px`
-              }
-            })
-          })
-        }
-
-        listenForUrlChanges()
-        runAllScripts()
-      }
-    </script>
+</html>
+{% endblock %}

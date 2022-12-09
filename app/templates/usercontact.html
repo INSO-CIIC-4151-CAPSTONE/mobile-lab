@@ -4,181 +4,80 @@
 {% block content %}
 <!DOCTYPE html>
 <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
-<html>
-
+<html lang="en">
 <head>
-    <title>Contact</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+	<title>Contact Us!</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!--===============================================================================================-->
 
-    <style>
-        :root {
-            --input-padding-x: 1.5rem;
-            --input-padding-y: .75rem;
-        }
-
-        body {
-            background: #fafafa;;
-        }
-
-        .card-contact {
-            border: 0;
-            /* width: 80vw; */
-            border-radius: 1rem;
-            box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            height: 100%;
-        }
-
-        .card-contact .card-title {
-            margin-bottom: 2rem;
-            font-weight: 300;
-            font-size: 1.5rem;
-        }
-
-        .card-contact .card-img-left {
-            width: 55%;
-            height: auto;
-            /* max-height: 40%; */
-            /* Link to your background image using in the property below! */
-            background: #401b6d;
-            /* background: scroll center url('/static/img/contact.jpg'); */
-            background: center url('/static/img/contact.jpg');
-            /* background-size: 575px 520px; */
-            background-size: cover;
-        }
-
-        .card-contact .card-body {
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .contact-form {
-            width: 100%;
-        }
-
-        .contact-form .btn {
-            font-size: 80%;
-            border-radius: 5rem;
-            letter-spacing: .1rem;
-            font-weight: bold;
-            padding: 1rem;
-            transition: all 0.2s;
-        }
-
-        .form-label-group {
-            position: relative;
-            margin-bottom: 1rem;
-        }
-
-        .form-label-group input {
-            height: auto;
-            border-radius: 2rem;
-        }
-
-        .form-label-group>input,
-        .form-label-group>label {
-            padding: var(--input-padding-y) var(--input-padding-x);
-        }
-
-        .form-label-group>label {
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: block;
-            width: 100%;
-            margin-bottom: 0;
-            /* Override default `<label>` margin */
-            line-height: 1.5;
-            color: #495057;
-            border: 1px solid transparent;
-            border-radius: .25rem;
-            transition: all .1s ease-in-out;
-        }
-
-        .form-label-group input::-webkit-input-placeholder {
-            color: transparent;
-        }
-
-        .form-label-group input:-ms-input-placeholder {
-            color: transparent;
-        }
-
-        .form-label-group input::-ms-input-placeholder {
-            color: transparent;
-        }
-
-        .form-label-group input::-moz-placeholder {
-            color: transparent;
-        }
-
-        .form-label-group input::placeholder {
-            color: transparent;
-        }
-
-        .form-label-group input:not(:placeholder-shown) {
-            padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
-            padding-bottom: calc(var(--input-padding-y) / 3);
-        }
-
-        .form-label-group input:not(:placeholder-shown)~label {
-            padding-top: calc(var(--input-padding-y) / 3);
-            padding-bottom: calc(var(--input-padding-y) / 3);
-            font-size: 12px;
-            color: #777;
-        }
-        @media(max-width: 991px) {
-            .card-contact {
-                width: 90vw;
-                margin-left: -10vw;
-                margin-right: auto;
-            }
-        }
-
-    </style>
-
+	<link rel="stylesheet" type="text/css" href="/static/css/contact.css">
+<!--===============================================================================================-->
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12 col-xl-12 mx-auto">
-            <div class="card card-contact flex-row my-5">
-                <div class="card-img-left d-none d-md-flex">
-                    <!-- Background image for card set in CSS! -->
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Contact Us!</h5>
-                    <form method="POST" class="contact-form">
-                        {% csrf_token %}
-                        <div class="form-label-group">
-                            <input type="text" id="name" class="form-control" placeholder="Full name" name="name" required />
-                            <label for="name">Full Name</label>
-                        </div>
 
-                        <div class="form-label-group">
-                            <input type="email" id="email" class="form-control" placeholder="Email address" name="email" required />
-                            <label for="email">Email Address</label>
-                        </div>
+	<div class="contact1">
+		<div class="container-contact1">
+			<div class="contact1-pic js-tilt" data-tilt>
+				<img src="/static/img/img-01.png" alt="IMG">
+			</div>
 
-                        <div class="form-label-group">
-                            <textarea rows="3" id="message" class="form-control" placeholder="Type message here..." name="message" required></textarea>
-                            <!-- <label for="message">Message</label> -->
-                        </div>
+			<form class="contact1-form validate-form">
+				<span class="contact1-form-title">
+					Contact Us!
+				</span>
 
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+				<div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<input class="input1" type="text" name="name" placeholder="Name">
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<input class="input1" type="text" name="email" placeholder="Email">
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Subject is required">
+					<input class="input1" type="text" name="subject" placeholder="Subject">
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Message is required">
+					<textarea class="input1" name="message" placeholder="Message"></textarea>
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="container-contact1-form-btn">
+					<button class="contact1-form-btn">
+						<span>
+							Send Email
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+<!--===============================================================================================-->
+	<script src="/static/js/contact.js"></script>
 </body>
-
 </html>
 {% endblock %}

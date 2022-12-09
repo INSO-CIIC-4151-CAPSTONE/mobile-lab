@@ -85,8 +85,9 @@ def contact_page(request):
         name = request.POST['name']
         email = request.POST['email']
         message_str = request.POST['message']
+        subject = request.POST['subject']
 
-        message_obj = Message.objects.create(name=name, email=email, message=message_str)
+        message_obj = Message.objects.create(name=name, email=email, message=message_str, subject=subject)
 
         message_obj.save()
         messages.Info(request, 'Message sent!')
@@ -113,6 +114,7 @@ def user_contact_page(request):
 
         message_obj.save()
         messages.Info(request, 'Message sent!')
+        return redirect('profile')
 
     return render(request, 'usercontact.html')
 
@@ -156,6 +158,13 @@ def createTestRequest(request, id):
         return redirect('profile')
 
     return render(request, 'request_form.html', {'name': name})
+
+
+def patientRequests(request):
+
+    current_patient = User.objects.filter(role='Patient').get(id=request.user.id)
+    patient_request = Request.objects.filter(patient=current_patient).all()
+    return render(request, 'profile.html', {'requests': patient_request})
 
 
 '''def updateTestRequest(request, id):

@@ -1,21 +1,16 @@
+
 .profile-container {
-  width: 100%;
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  flex-direction: column;
-  background-color: #ffffff;
-}
-.profile-container1 {
   width: 100%;
   height: 2660px;
   display: flex;
   position: relative;
   background-size: cover;
-  background-image: url('https://images.unsplash.com/photo-1533038590840-1cde6e668a91?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDI5fHxiYWNrZ3JvdW5kfGVufDB8fHx8MTY3MDI1ODA2Mg&ixlib=rb-4.0.3&h=2000');
+  background: -webkit-linear-gradient(left, #25c481, #c77ee0);
+  background: linear-gradient(to right, #25c481, #c77ee0);
 }
+
 .profile-icon {
-  top: 124px;
+  top: 40px;
   fill: #6f1592;
   left: 0px;
   right: 0px;
@@ -27,9 +22,9 @@
   border-radius: 50%;
 }
 .profile-title {
-  top: 282px;
+  top: 200px;
   left: 0px;
-  color: rgb(23, 144, 96);
+  color: rgb(255, 255, 255);
   right: 0px;
   margin: auto;
   position: absolute;
@@ -37,44 +32,47 @@
   align-self: center;
   font-style: normal;
   text-align: center;
-  font-family: Urbanist;
+  font-family: Titillium Web;
   font-weight: 600;
   line-height: 1.2;
 }
 .profile-icon02 {
-  top: 364px;
-  left: 707px;
+  top: 275px;
+  left: 607px;
   width: 24px;
   height: 24px;
   margin: auto;
   position: absolute;
 }
 .profile-icon07 {
-  top: 396px;
-  left: 706px;
+  top: 305px;
+  left: 607px;
   width: 24px;
   height: 24px;
   position: absolute;
 }
 .profile-icon09 {
-  top: 427px;
-  left: 704px;
+  top: 335px;
+  left: 607px;
   width: 24px;
   height: 24px;
   position: absolute;
 }
 .profile-text {
-  top: 366px;
-  left: 737px;
+  top: 275px;
+  left: 640px;
   position: absolute;
+  color: #6f1592;
 }
 .profile-text1 {
-  top: 397px;
-  left: 735px;
+  top: 305px;
+  left: 640px;
   position: absolute;
+  color: #6f1592;
 }
 .profile-text2 {
-  top: 429px;
-  left: 737px;
+  top: 335px;
+  left: 640px;
   position: absolute;
+  color: #6f1592;
 }

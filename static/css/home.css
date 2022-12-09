@@ -38,7 +38,7 @@
   flex-direction: row;
 }
 .home-home {
-  color: rgb(162, 47, 162);
+  color: rgb(97, 27, 127);
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -49,7 +49,7 @@
   text-decoration: none;
 }
 .home-about {
-  color: #a22fa2;
+  color: #611b7f;
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -60,7 +60,7 @@
   text-decoration: none;
 }
 .home-test {
-  color: rgb(162, 47, 162);
+  color: rgb(97, 27, 127);
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -71,7 +71,7 @@
   text-decoration: none;
 }
 .home-contact {
-  color: rgb(162, 47, 162);
+  color: rgb(97, 27, 127);
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -92,6 +92,7 @@
 }
 .home-login:hover {
   background-color: #58236b;
+  border-color: #179060;
 }
 .home-max-width1 {
   width: 1421px;
@@ -112,7 +113,7 @@
   color: #179060;
   font-size: 52px;
   font-style: normal;
-  font-family: Urbanist;
+  font-family: "Titillium Web";
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: var(--dl-space-space-twounits);
@@ -138,26 +139,28 @@
 }
 
 .home-signup {
-  color: var(--dl-color-scheme-green100);
+  color: #ffffff;
   transition: 0.3s;
-  border-color: var(--dl-color-scheme-green100);
-  text-decoration: none;
+  border-color: transparent;
+  text-decoration: white;
   background-color: rgb(255, 255, 255);
 }
 .home-signup:hover {
   color: var(--dl-color-scheme-white);
   background-color: #611b7f;
+  border-color: #179060;
 }
 .home-login1 {
-  color: var(--dl-color-scheme-green100);
+  color: #ffffff;
   transition: 0.3s;
-  border-color: var(--dl-color-scheme-green100);
-  text-decoration: none;
+  border-color: transparent;
+  text-decoration: white;
   background-color: rgb(255, 255, 255);
 }
 .home-login1:hover {
   color: #ffffff;
   background-color: #611b7f;
+  border-color: #179060;
 }
 .home-hero-image {
   flex: 1;

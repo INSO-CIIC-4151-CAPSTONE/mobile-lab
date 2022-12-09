@@ -55,15 +55,15 @@
           transform: rotate(90deg);
         }
     </style>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
     <div>
       <link href="{% static 'css/profile.css' %}" rel="stylesheet" />
 
       <div class="profile-container">
-        <div class="profile-container1">
           <img class="profile-icon" src="{{ppic}}"/>
+      <br>
+    <br>
           <h1 class="profile-title">{{ name }}</h1>
           <svg viewBox="0 0 1024 1024" class="profile-icon02">
             <path
@@ -89,13 +89,77 @@
           </svg>
           <span class="profile-text">Gender: {{ gender }}</span>
           <span class="profile-text1">Phone-Number: {{ phonenumber }}</span>
-          <span class="profile-text2">Address: {{ address }}</span>
-        </div>
-      </div>
-    </div>
+          <span class="profile-text2"> Address: {{ address }} </span>
+    <div>
+        <link href="{% static 'css/request.css' %}"rel="stylesheet" />
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+      <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<div>
+
+  <!--for demo wrap-->
+      <link href="{% static 'css/request.css' %}"rel="stylesheet" />
+  <h1>Requested Blood Tests</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Test Name</th>
+          <th>Date</th>
+          <th>Hour</th>
+          <th>Modality</th>
+            <th>Technician</th>
+            <th>Created Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+         {% for i in requests %}
+        <tr>
+                <td>{{i.lab_test }}</td>
+                <td>{{i.date}}</td>
+                <td>{{i.hour}}</td>
+                <td>{{i.modality}}</td>
+            <td>{{i.technician}}</td>
+            <td>{{i.requested_date}}</td>
+            <td>{{i.status}}</td>
+
+                <td>
+                    <a>Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
     <script>
-      window.onload = () => {
         const runAllScripts = () => {
+      window.onload = () => {
           initializeAllAccordions()
         }
 
@@ -136,6 +200,10 @@
         runAllScripts()
       }
     </script>
+</div>
+    </div>
+      </div>
+    </div>
   </body>
 </html>
 {% endblock %}
