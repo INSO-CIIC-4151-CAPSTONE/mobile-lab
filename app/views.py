@@ -66,13 +66,18 @@ def profile_page(request):
         if request.user.is_authenticated and logout_request is not None:
             logout(request)
             return redirect('/')
+    try:
+        ppic = request.user.profile_picture.url
+    except ValueError:
+        ppic = "/static/img/user.png"
 
-    name = request.user.first_name + ' ' + request.user.last_name
-    context = {'name': name,
-               'gender': request.user.gender,
-               'address': request.user.address,
-               'phonenumber': request.user.phone_number,
-               }
+    current_patient = User.objects.filter(role='Patient').get(id=request.user.id)
+    patient_request = Request.objects.filter(patient=current_patient).all()
+    patient_full_name = request.user.first_name + ' ' + request.user.last_name
+
+    context = {'user': current_patient, 'requests': patient_request,
+               'name': patient_full_name, 'ppic': ppic}
+
     return render(request, 'profile.html', context)
 
 
@@ -109,8 +114,9 @@ def user_contact_page(request):
         name = request.POST['name']
         email = request.POST['email']
         message_str = request.POST['message']
+        subject = request.POST['subject']
 
-        message_obj = Message.objects.create(name=name, email=email, message=message_str)
+        message_obj = Message.objects.create(name=name, email=email, message=message_str, subject=subject)
 
         message_obj.save()
         messages.Info(request, 'Message sent!')
@@ -160,14 +166,8 @@ def createTestRequest(request, id):
     return render(request, 'request_form.html', {'name': name})
 
 
-def patientRequests(request):
 
-    current_patient = User.objects.filter(role='Patient').get(id=request.user.id)
-    patient_request = Request.objects.filter(patient=current_patient).all()
-    return render(request, 'profile.html', {'requests': patient_request})
-
-
-'''def updateTestRequest(request, id):
+''''def updateTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
     order = Request.objects.get(id=id)

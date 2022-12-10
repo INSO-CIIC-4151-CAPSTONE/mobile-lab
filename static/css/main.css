@@ -99,7 +99,7 @@
   bottom: 0px;
   margin: auto;
   display: flex;
-  position: fixed;
+  position: relative;
   max-width: var(--dl-size-size-maxwidth);
   align-items: center;
   padding: var(--dl-space-space-twounits) 13px;

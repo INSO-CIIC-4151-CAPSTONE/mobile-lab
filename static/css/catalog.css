@@ -1,11 +1,12 @@
 
 h1{
   font-size: 30px;
+  padding:-2px;
   color: #ffffff;
   text-transform: uppercase;
   font-weight: 300;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-family: Titillium Web;
 }
 table{
@@ -52,7 +53,7 @@ td.i.description{
 body{
   background: -webkit-linear-gradient(left, #25c481, #c77ee0);
   background: linear-gradient(to right, #25c481, #c77ee0);
-  font-family: 'Titillium Web', sans-serif;
+  font-family: Titillium Web;
 }
 section{
   margin: 50px;

@@ -3107,7 +3107,7 @@ iframe {
 .container-contact1 {
   width: 950px;
     height: 520px;
-  background: rgba(255, 254, 243, 0.82);
+  background: transparent;
   border-radius: 10px;
   overflow: hidden;
   display: -webkit-box;
@@ -3146,7 +3146,7 @@ iframe {
   display: block;
   font-family: Titillium Web;
   font-size: 24px;
-  color: #179060;
+  color: #ffffff;
   line-height: 1.2;
   text-align: center;
   padding-bottom: 44px;

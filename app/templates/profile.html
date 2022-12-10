@@ -87,11 +87,10 @@
               d="M585.143 646.286c0 49.714-32.571 85.143-73.143 85.143h-292.571c-40.571 0-73.143-35.429-73.143-85.143 0-88.571 21.714-186.857 112-186.857 28 16 65.714 43.429 107.429 43.429s79.429-27.429 107.429-43.429c90.286 0 112 98.286 112 186.857zM495.429 349.143c0 72-58.286 129.714-129.714 129.714s-129.714-57.714-129.714-129.714c0-71.429 58.286-129.714 129.714-129.714s129.714 58.286 129.714 129.714zM1024 603.429v36.571c0 10.286-8 18.286-18.286 18.286h-329.143c-10.286 0-18.286-8-18.286-18.286v-36.571c0-10.286 8-18.286 18.286-18.286h329.143c10.286 0 18.286 8 18.286 18.286zM1024 459.429v32c0 11.429-9.143 20.571-20.571 20.571h-324.571c-11.429 0-20.571-9.143-20.571-20.571v-32c0-11.429 9.143-20.571 20.571-20.571h324.571c11.429 0 20.571 9.143 20.571 20.571zM1024 310.857v36.571c0 10.286-8 18.286-18.286 18.286h-329.143c-10.286 0-18.286-8-18.286-18.286v-36.571c0-10.286 8-18.286 18.286-18.286h329.143c10.286 0 18.286 8 18.286 18.286zM1097.143 859.429v-694.857c0-9.714-8.571-18.286-18.286-18.286h-987.429c-9.714 0-18.286 8.571-18.286 18.286v694.857c0 9.714 8.571 18.286 18.286 18.286h201.143v-54.857c0-10.286 8-18.286 18.286-18.286h36.571c10.286 0 18.286 8 18.286 18.286v54.857h438.857v-54.857c0-10.286 8-18.286 18.286-18.286h36.571c10.286 0 18.286 8 18.286 18.286v54.857h201.143c9.714 0 18.286-8.571 18.286-18.286zM1170.286 164.571v694.857c0 50.286-41.143 91.429-91.429 91.429h-987.429c-50.286 0-91.429-41.143-91.429-91.429v-694.857c0-50.286 41.143-91.429 91.429-91.429h987.429c50.286 0 91.429 41.143 91.429 91.429z"
             ></path>
           </svg>
-          <span class="profile-text">Gender: {{ gender }}</span>
-          <span class="profile-text1">Phone-Number: {{ phonenumber }}</span>
-          <span class="profile-text2"> Address: {{ address }} </span>
+          <span class="profile-text">Gender: {{ user.gender }}</span>
+          <span class="profile-text1">Phone-Number: {{ user.phone_number }}</span>
+          <span class="profile-text2"> Address: {{ user.address }} </span>
     <div>
-        <link href="{% static 'css/request.css' %}"rel="stylesheet" />
     <br>
     <br>
     <br>
@@ -119,19 +118,21 @@
 <div>
 
   <!--for demo wrap-->
-      <link href="{% static 'css/request.css' %}"rel="stylesheet" />
+      <link href="{% static 'css/catalog.css' %}"rel="stylesheet" />
   <h1>Requested Blood Tests</h1>
   <div class="tbl-header">
     <table cellpadding="0" cellspacing="0" border="0">
       <thead>
         <tr>
           <th>Test Name</th>
-          <th>Date</th>
-          <th>Hour</th>
-          <th>Modality</th>
+          <th>Requested-Date</th>
+          <th>Date-To-Perform</th>
+          <th>Hour-To-Perform</th>
+            <th>Modality</th>
             <th>Technician</th>
-            <th>Created Date</th>
           <th>Status</th>
+            <th>Update-Request</th>
+            <th>Delete-Request</th>
         </tr>
       </thead>
     </table>
@@ -141,22 +142,30 @@
       <tbody>
          {% for i in requests %}
         <tr>
-                <td>{{i.lab_test }}</td>
+                <td>{{i.lab_test.name }}</td>
+                <td>{{i.requested_date}}</td>
                 <td>{{i.date}}</td>
                 <td>{{i.hour}}</td>
-                <td>{{i.modality}}</td>
+            <td>{{i.modality}}</td>
             <td>{{i.technician}}</td>
-            <td>{{i.requested_date}}</td>
             <td>{{i.status}}</td>
 
                 <td>
                     <a>Update</a>
+                </td>
+                <td>
+                    <a>Delete</a>
                 </td>
             </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
+</div>
+    </div>
+      </div>
+    </div>
+  </body>
     <script>
         const runAllScripts = () => {
       window.onload = () => {
@@ -200,10 +209,5 @@
         runAllScripts()
       }
     </script>
-</div>
-    </div>
-      </div>
-    </div>
-  </body>
 </html>
 {% endblock %}

@@ -5,13 +5,11 @@
   display: flex;
   position: relative;
   background-size: cover;
-  background: -webkit-linear-gradient(left, #25c481, #c77ee0);
-  background: linear-gradient(to right, #25c481, #c77ee0);
 }
 
 .profile-icon {
   top: 40px;
-  fill: #6f1592;
+  fill: #ffffff;
   left: 0px;
   right: 0px;
   width: var(--dl-size-size-large);
@@ -43,6 +41,7 @@
   height: 24px;
   margin: auto;
   position: absolute;
+  color: white;
 }
 .profile-icon07 {
   top: 305px;
@@ -50,6 +49,7 @@
   width: 24px;
   height: 24px;
   position: absolute;
+  color: white;
 }
 .profile-icon09 {
   top: 335px;
@@ -57,6 +57,7 @@
   width: 24px;
   height: 24px;
   position: absolute;
+  color: white;
 }
 .profile-text {
   top: 275px;
