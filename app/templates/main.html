@@ -72,6 +72,11 @@
               <span class="main-text">MOBILE-LAB</span>
             </div>
             <div class="main-links">
+              {% if user.role == 'TECHNICIAN' %}
+                <button class="main-requests" onclick="location.href='/requests'">
+                  REQUESTS
+                </button>
+              {% endif %}
               <button class="main-profile" onclick="location.href='/profile'">
                 PROFILE
               </button>
