@@ -35,7 +35,7 @@ class UpdateRequestForm(forms.Form):
     }), choices=STATUS_CHOICES, label='Status')
     accepted = forms.BooleanField(widget=forms.CheckboxInput(attrs={
         'class': 'form-control'
-    }), label='Accepted', required=False)
+    }), label='Accept Request', required=False)
 
 
     def clean_date(self):
