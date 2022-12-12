@@ -71,7 +71,7 @@ run inside repo directory: `pip3 install -r requirements.txt`
    1. `py manage.py create_admin --username=admin_username --email=admin_email --password=admin_password`
 
 # Terminal command to create a technician account
-   1. `py manage.py create_admin --username=admin_username --email=admin_email --password=admin_password`
+   1. `py manage.py create_technician --username=admin_username --email=admin_email --password=admin_password`
 
 # Update Lab Tests in db from all_lab_tests.csv   
 `manage.py updatetests`

@@ -51,11 +51,11 @@ def login_page(request):
         if user is not None:
             login(request, user)
             print(user.role)
-            if user.role == 'PATIENT':
+            if user.role == 'PATIENT' or user.role == 'Patient':
                 return redirect('profile')
-            elif user.role == 'ADMIN':
+            elif user.role == 'ADMIN' or user.role == 'admin' :
                 return redirect('profile')
-            elif user.role == 'TECHNICIAN':
+            elif user.role == 'TECHNICIAN' or user.role == 'Technician':
                 return redirect('requests')
             else:
                 return redirect('profile')
@@ -198,7 +198,7 @@ def createTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
 
-    if request.user.role != 'PATIENT':
+    if request.user.role != 'PATIENT' and request.user.role != 'Patient':
         raise Exception(DisallowedRedirect)
 
     if request.method == 'POST':
@@ -243,6 +243,13 @@ def requests(request):
     if request.user.role != 'TECHNICIAN':
         raise Exception(DisallowedRedirect)
 
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
+
     all_requests = Request.objects.all()
 
     context = {
@@ -251,12 +258,26 @@ def requests(request):
 
     return render(request, 'requests.html', context)
 
-def update_request(request, id):
+def update_request_technician(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
 
     if request.user.role != 'TECHNICIAN':
         raise Exception(DisallowedRedirect)
+
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
+
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
     
     r = Request.objects.filter(id=id).get()
 
@@ -311,11 +332,12 @@ def update_request(request, id):
         'technician_name': technician_name
     }
 
-    return render(request, 'update_request.html', context)
+    return render(request, 'update_request_technician.html', context)
 
 def updateTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
+
     if request.method == 'POST':
         logout_request = request.POST.get('logout', None)
 
