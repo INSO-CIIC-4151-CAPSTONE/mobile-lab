@@ -281,7 +281,7 @@ def update_request(request, id):
         
         r.save()
 
-        messages.Info(request, 'Request updated!')
+        messages.info(request, 'Request updated!')
         return redirect('requests')
 
     
