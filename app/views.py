@@ -14,16 +14,19 @@ from app.forms import UpdateRequestForm
 
 def register_page(request):
     if request.method == 'POST':
+        print(request.POST)
         email = request.POST['email']
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
+        gender = request.POST['gender']
+        phone = int(request.POST['phone'])
 
         if password1 == password2:
             try:
                 user = User.objects.create_user(username=email, email=email, password=password1, first_name=first_name,
-                                                last_name=last_name, role='Patient')
+                                                last_name=last_name, role='Patient', phone_number=phone, gender=gender)
                 user.save()
 
                 user = authenticate(request, username=email, password=password1)

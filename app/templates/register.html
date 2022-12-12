@@ -204,6 +204,18 @@ button:after {
                             <label for="inputConfirmPassword">Confirm Password</label>
                         </div>
 
+                        <div class="form-label-group">
+                            <input type="tel" id="phone" class="form-control" placeholder="Phone Number" name="phone" maxlength="10" required>
+                            <label for="phone">Phone Number</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <select name="gender" id="gender">
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+
                         <button class="button1" type="submit">Register</button>
                         <a class="d-block text-center mt-2 small" href="{%  url 'login' %}">Already have an Account? Login</a>
                     </form>
