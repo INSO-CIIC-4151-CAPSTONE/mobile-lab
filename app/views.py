@@ -1,13 +1,14 @@
 from django.contrib.auth import login, logout
-from django.core.checks import messages
 from django.core.exceptions import DisallowedRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.db import *
-from app.models import User, Test, Request
-from app.models import Message
+from app.models import User, Test, Request, Message
+from django.contrib import messages
 
-''' © 2022 Mobile-Lab, All Rights Reserved. '''
+'''-----------------------------------© 2022 Mobile-Lab, All Rights Reserved.---------------------------------------'''
+
+"""A view that displays the register page"""
 
 
 def register_page(request):
@@ -36,6 +37,9 @@ def register_page(request):
     return render(request, 'register.html')
 
 
+"""A view that displays the login page"""
+
+
 def login_page(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -47,14 +51,20 @@ def login_page(request):
             login(request, user)
             return redirect('profile')
         else:
-            messages.Info(request, 'Invalid Username or Password')
-            return redirect("/")
+            messages.success(request, 'Invalid Username or Password')
+            return redirect("login")
 
     return render(request, 'login.html')
 
 
+"""A view that displays the home page"""
+
+
 def home_page(request):
     return render(request, 'home.html')
+
+
+"""A view that displays the user profile page also, user can see request made"""
 
 
 def profile_page(request):
@@ -67,9 +77,9 @@ def profile_page(request):
             logout(request)
             return redirect('/')
     try:
-        ppic = request.user.profile_picture.url
+        ppic = User.objects.filter(id=request.user.id).get().profile_picture.url
     except ValueError:
-        ppic = "/static/img/user.png"
+        ppic = "/static/images/user.png"
 
     current_patient = User.objects.filter(role='Patient').get(id=request.user.id)
     patient_request = Request.objects.filter(patient=current_patient).all()
@@ -81,11 +91,19 @@ def profile_page(request):
     return render(request, 'profile.html', context)
 
 
+"""A view that displays the about page, info of mobile lab and mission"""
+
+
 def about_page(request):
     return render(request, 'about.html')
 
 
+"""A view that displays the contact page, this view is for not logged users. 
+   Users can send messages to the company"""
+
+
 def contact_page(request):
+    e_pic = "/static/images/email.png"
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
@@ -95,15 +113,20 @@ def contact_page(request):
         message_obj = Message.objects.create(name=name, email=email, message=message_str, subject=subject)
 
         message_obj.save()
-        messages.Info(request, 'Message sent!')
-        return redirect('/')
+        messages.success(request, 'Message sent!')
+        return redirect('/contact')
 
-    return render(request, 'contact.html')
+    return render(request, 'contact.html', {'e_pic': e_pic})
+
+
+"""A view that displays the contact page, this view is for logged users. 
+   Users can send messages to the company"""
 
 
 def user_contact_page(request):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
+    e_pic = "/static/images/email.png"
     if request.method == 'POST':
         logout_request = request.POST.get('logout', None)
 
@@ -119,10 +142,23 @@ def user_contact_page(request):
         message_obj = Message.objects.create(name=name, email=email, message=message_str, subject=subject)
 
         message_obj.save()
-        messages.Info(request, 'Message sent!')
-        return redirect('profile')
+        messages.success(request, 'Message sent!')
+        return redirect('/usercontact')
 
-    return render(request, 'usercontact.html')
+    return render(request, 'usercontact.html', {'e_pic': e_pic})
+
+
+"""A view that displays the Test list page, this view is for not logged users. 
+   Users can see a list with lab tests that the lab offers"""
+
+
+def testList_page(request):
+    tests = Test.objects.all()
+    return render(request, 'testsList.html', {'tests': tests})
+
+
+"""A view that displays the catalog page, this view is for logged users. 
+   Users can select a lab test to request"""
 
 
 def labTests(request):
@@ -138,19 +174,30 @@ def labTests(request):
     return render(request, 'catalog.html', {'tests': tests})
 
 
-def testList_page(request):
-    tests = Test.objects.all()
-    return render(request, 'testsList.html', {'tests': tests})
+"""A view that displays the a request test lab form page, this view is for logged users. 
+   Users can select day,hour and modality of selected test"""
 
 
 def createTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
-    name = Test.objects.filter(id=id).get().name
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
+
+    test = Test.objects.get(id=id)
     current_user = User.objects.filter(role='Patient').get(id=request.user.id)
 
+    if Request.objects.filter(patient=current_user).exists() and Request.objects.filter(
+            patient=current_user).get().lab_test == test:
+        messages.info(request, "test already requested!")
+        return redirect('profile')
+
     if request.method == 'POST':
-        lab_test = Test.objects.get(id=id)
+        lab_test = test
         modality = request.POST['modality']
         date = request.POST['date']
         hour = request.POST['hour']
@@ -160,35 +207,52 @@ def createTestRequest(request, id):
 
         request_obj.save()
 
-        messages.Info(request, 'Test requested!')
+        messages.success(request, 'Test requested!')
         return redirect('profile')
 
-    return render(request, 'request_form.html', {'name': name})
+    return render(request, 'request_form.html', {'test': test})
 
 
+"""A view that displays the a request test lab form page, this view is for logged users. 
+   Users can update the selected day,hour and modality of selected test"""
 
-''''def updateTestRequest(request, id):
+
+def updateTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
-    order = Request.objects.get(id=id)
-    form = RequestForm(instance=order)
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
+
+    user_request = Request.objects.get(id=id)
+    test = user_request.lab_test
 
     if request.method == 'POST':
-        form = RequestForm(request.POST, instance=order)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
+        modality = request.POST['modality']
+        date = request.POST['date']
+        hour = request.POST['hour']
 
-    context = {'form': form}
-    return render(request, "request_form.html", context)
+        user_request.lab_test = test
+        user_request.requested_date = date
+        user_request.hour = hour
+        user_request.modality = modality
+
+        user_request.save()
+        messages.success(request, 'Test Updated!')
+        return redirect('profile')
+
+    return render(request, 'request_form.html', {'test': test})
+
+
+"""A view that delete a selected requested lab test"""
 
 
 def deleteTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
-    order = Request.objects.get(id=id)
-    if request.method == "POST":
-        order.delete()
-        return redirect('profile')
-    context = {'item': order.lab_test.name}
-    return render(request, 'delete_request.html', context)'''
+    request = Request.objects.get(id=id)
+    request.delete()
+    return redirect('profile')

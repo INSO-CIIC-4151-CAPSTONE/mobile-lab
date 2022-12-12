@@ -4,9 +4,8 @@
 {% block content %}
 
  <!DOCTYPE html>
-    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
-    <html>
-    <head>
+    {% include 'messages.html' %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
      <section>
   <!--for demo wrap-->
       <link href="{% static 'css/catalog.css' %}"rel="stylesheet" />
@@ -43,7 +42,6 @@
     </table>
   </div>
 </section>
-    </head>
-    </html>
+
 
 {% endblock %}

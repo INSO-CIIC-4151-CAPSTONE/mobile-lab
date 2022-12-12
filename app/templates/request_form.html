@@ -5,7 +5,7 @@
 <br>
 
 {% block content %}
-<link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
 <html>
 
 <head>
@@ -50,7 +50,7 @@
             /* Link to your background image using in the property below! */
             background: #401b6d;
             /* background: scroll center url('/static/img/contact.jpg'); */
-            background: center url('/static/img/request.png');
+            background: center url('/../static/images/request.png');
             /* background-size: 575px 520px; */
             background-size: cover;
         }
@@ -178,10 +178,11 @@
                     <form method="POST" class="contact-form">
                         {% csrf_token %}
 
-                        <div class="form-label-group">
-                            <span><label for="id">  Test Name:  {{ name }} </label></span>
+                         <div class="form-label-group">
+                           <input type="text" id="lab_test" name="lab_test" value="{{test}}" class="form-control"
+                             readonly required>
+                            <label for="lab_test">Selected Test</label>
                         </div>
-
                            <div class="form-label-group">
                             <input type="date" id="date" class="form-control" placeholder=" " name="date" required />
                             <label for="date">Select Date</label>

@@ -4,7 +4,8 @@
 {% block content %}
 
 <!DOCTYPE html>
-<link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+{% include 'messages.html' %}
+<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}" xmlns=""/>
 <html lang="en">
   <head>
     <title>profile - MobiLab</title>
@@ -151,10 +152,10 @@
             <td>{{i.status}}</td>
 
                 <td>
-                    <a>Update</a>
+                    <a href="/update/{{i.id}}" class="btn btn-info">Update</a>
                 </td>
                 <td>
-                    <a>Delete</a>
+                   <a href="/delete/{{i.id}}" class="btn btn-danger btnElimination">Delete</a>
                 </td>
             </tr>
         {% endfor %}
@@ -209,5 +210,20 @@
         runAllScripts()
       }
     </script>
+<script>(function () {
+
+    const btnElimination = document.querySelectorAll(".btnElimination");
+
+    btnElimination.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const confirmation = confirm('¿Are you sure you want to Delete the selected request?');
+            if (!confirmation) {
+                e.preventDefault();
+            }
+        });
+    });
+
+})();
+</script>
 </html>
 {% endblock %}

@@ -36,7 +36,7 @@
   flex-direction: row;
 }
 .main-profile {
-  color: rgb(97, 27, 127);
+  color: rgb(162, 47, 162);
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -47,7 +47,7 @@
   text-decoration: none;
 }
 .main-about {
-  color: #611b7f;
+  color: #a22fa2;
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -58,7 +58,7 @@
   text-decoration: none;
 }
 .main-test {
-  color: rgb(97, 27, 127);
+  color: rgb(162, 47, 162);
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;
@@ -69,7 +69,7 @@
   text-decoration: none;
 }
 .main-contact {
-  color: rgb(97, 27, 127);
+  color: rgb(162, 47, 162);
   font-size: 16px;
   font-style: normal;
   font-family: Titillium Web;

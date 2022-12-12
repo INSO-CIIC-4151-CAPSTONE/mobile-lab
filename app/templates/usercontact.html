@@ -1,9 +1,10 @@
 {%  extends 'main.html' %}
 {%  load static %}
-
 {% block content %}
+       {% include 'messages.html' %}
+
 <!DOCTYPE html>
-<link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
 <html lang="en">
 <head>
 	<title>Contact Us!</title>
@@ -12,39 +13,41 @@
 
 <!--===============================================================================================-->
 
-	<link rel="stylesheet" type="text/css" href="/static/css/contact.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
 <!--===============================================================================================-->
 </head>
 <body>
 
+
 	<div class="contact1">
 		<div class="container-contact1">
 			<div class="contact1-pic js-tilt" data-tilt>
-				<img src="/static/img/email.png" alt="IMG">
+				<img src="{{ e_pic }}" alt="IMG">
 			</div>
 
-			<form class="contact1-form validate-form">
-				<span class="contact1-form-title">
+			<form method="POST" class="contact1-form validate-form">
+                {% csrf_token %}
+                <span class="contact1-form-title">
 					Contact Us!
 				</span>
 
 				<div class="wrap-input1 validate-input" data-validate = "Name is required">
-					<input class="input1" type="text" name="name" placeholder="Name">
+					<input class="input1" id="name" type="text" name="name" placeholder="Name">
 					<span class="shadow-input1"></span>
 				</div>
 
 				<div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-					<input class="input1" type="text" name="email" placeholder="Email">
+					<input class="input1" id=email type="email" name="email" placeholder="Email">
 					<span class="shadow-input1"></span>
 				</div>
 
 				<div class="wrap-input1 validate-input" data-validate = "Subject is required">
-					<input class="input1" type="text" name="subject" placeholder="Subject">
+					<input class="input1" id="subject" type="text" name="subject" placeholder="Subject">
 					<span class="shadow-input1"></span>
 				</div>
 
 				<div class="wrap-input1 validate-input" data-validate = "Message is required">
-					<textarea class="input1" name="message" placeholder="Message"></textarea>
+					<textarea class="input1" id=message name="message" placeholder="Message"></textarea>
 					<span class="shadow-input1"></span>
 				</div>
 
@@ -77,7 +80,7 @@
 </script>
 
 <!--===============================================================================================-->
-	<script src="/static/js/contact.js"></script>
+	<script href="{% static '/js/contact.js' %}"></script>
 </body>
 </html>
 {% endblock %}

@@ -81,6 +81,9 @@ class Test(models.Model):
     laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
+    def __str__(self):
+        return self.name
+
 
 class Request(models.Model):
     requested_date = models.DateTimeField(auto_now_add=True)
@@ -92,6 +95,9 @@ class Request(models.Model):
     status = models.CharField(max_length=50, choices=REQUEST_STATUS_CHOICES, default='PENDING')
     comments = models.CharField(max_length=1024, default='')
     modality = models.CharField(max_length=50, choices=MODALITY_CHOICES, default='IN-HOME')
+
+    def __str__(self):
+        return self.lab_test.name
 
 
 class Appointment(models.Model):

@@ -1,6 +1,7 @@
 {%  load static %}
 <!DOCTYPE html>
-<link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+{% include 'messages.html' %}
+<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
 <html>
 
 <head>
@@ -158,13 +159,13 @@ button:after {
   filter: blur(14px);
 }
 
-.button1 {
+.button20 {
   background-image: linear-gradient(90deg, #c77ee0,#79f391);
 }
-.button1:before {
+.button20:before {
   background-image: linear-gradient(90deg, #c77ee0, transparent);
 }
-.button1:after {
+.button20:after {
   background-image: linear-gradient(90deg, transparent, #79f391);
 }
 
@@ -193,7 +194,7 @@ button:after {
                             <label for="inputPassword">Password</label>
                         </div>
 
-                        <button class="button1" type="submit">Login</button>
+                        <button class="button20" type="submit">Login</button>
                         <a class="d-block text-center mt-2 small" href="{%  url 'register' %}">Don't have an Account? Register</a>
                     </form>
                 </div>
