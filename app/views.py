@@ -6,6 +6,7 @@ from django.db import *
 from app.models import User, Test, Request, Message
 from django.contrib import messages
 from app.forms import UpdateRequestForm
+from app.forms import UserProfileForm
 
 '''-----------------------------------© 2022 Mobile-Lab, All Rights Reserved.---------------------------------------'''
 
@@ -103,6 +104,31 @@ def profile_page(request):
 
     return render(request, 'profile.html', context)
 
+def edit_profile(request):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+    try:
+        ppic = request.user.profile_picture.url
+    except ValueError:
+        ppic = "/static/img/user.png"
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+
+    context = {
+        'fname': request.user.first_name,
+        'lname': request.user.last_name,
+        'gender': request.user.gender,
+        'address': request.user.address,
+        'phone-number': request.user.phone_number,
+        'ppic': ppic,
+        'form': UserProfileForm(instance=request.user),
+    }
+    return render(request, 'edit_profile.html', context)
 
 """A view that displays the about page, info of mobile lab and mission"""
 

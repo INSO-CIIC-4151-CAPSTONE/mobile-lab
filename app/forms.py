@@ -1,4 +1,5 @@
 import datetime
+from .models import *
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -51,3 +52,8 @@ class UpdateRequestForm(forms.Form):
 
         # Remember to always return the cleaned data.
         return data
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'gender', 'email', 'phone_number', 'profile_picture']
