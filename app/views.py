@@ -133,9 +133,11 @@ def user_contact_page(request):
         if request.user.is_authenticated and logout_request is not None:
             logout(request)
             return redirect('/')
+    user_email = request.user.email
+    user_full_name = request.user.first_name + ' ' + request.user.last_name
     if request.method == 'POST':
-        name = request.POST['name']
-        email = request.POST['email']
+        name = user_full_name
+        email = user_email
         message_str = request.POST['message']
         subject = request.POST['subject']
 
@@ -143,9 +145,13 @@ def user_contact_page(request):
 
         message_obj.save()
         messages.success(request, 'Message sent!')
+
         return redirect('/usercontact')
 
-    return render(request, 'usercontact.html', {'e_pic': e_pic})
+    context = {'name': user_full_name, 'email': user_email,
+               'e_pic': e_pic}
+
+    return render(request, 'usercontact.html', context)
 
 
 """A view that displays the Test list page, this view is for not logged users. 

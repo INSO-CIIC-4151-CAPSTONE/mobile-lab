@@ -32,12 +32,13 @@
 				</span>
 
 				<div class="wrap-input1 validate-input" data-validate = "Name is required">
-					<input class="input1" id="name" type="text" name="name" placeholder="Name">
+					<input class="input1" id="name" type="text" name="name" value="{{ name }}"
+                    readonly required>
 					<span class="shadow-input1"></span>
 				</div>
-
 				<div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-					<input class="input1" id=email type="email" name="email" placeholder="Email">
+					<input class="input1" id=email type="email" name="email" value="{{ email }}"
+                    readonly required>
 					<span class="shadow-input1"></span>
 				</div>
 
