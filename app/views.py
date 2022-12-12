@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 from django.db import *
 from app.models import User, Test, Request
 from app.models import Message
+from app.forms import UpdateRequestForm
 
 ''' © 2022 Mobile-Lab, All Rights Reserved. '''
 
@@ -45,7 +46,16 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect('profile')
+            print(user.role)
+            if user.role == 'PATIENT':
+                return redirect('profile')
+            elif user.role == 'ADMIN':
+                return redirect('profile')
+            elif user.role == 'TECHNICIAN':
+                return redirect('requests')
+            else:
+                return redirect('profile')
+            
         else:
             messages.Info(request, 'Invalid Username or Password')
             return redirect("/")
@@ -146,16 +156,19 @@ def testList_page(request):
 def createTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
+    if request.user.role != 'PATIENT':
+        raise Exception(DisallowedRedirect)
+
     name = Test.objects.filter(id=id).get().name
-    current_user = User.objects.filter(role='Patient').get(id=request.user.id)
 
     if request.method == 'POST':
         lab_test = Test.objects.get(id=id)
         modality = request.POST['modality']
         date = request.POST['date']
         hour = request.POST['hour']
+        comments = request.POST['comments']
 
-        request_obj = Request.objects.create(lab_test=lab_test, modality=modality, date=date, hour=hour,
+        request_obj = Request.objects.create(lab_test=lab_test, modality=modality, date=date, hour=hour, comments=comments,
                                              patient=current_user)
 
         request_obj.save()
@@ -166,6 +179,81 @@ def createTestRequest(request, id):
     return render(request, 'request_form.html', {'name': name})
 
 
+def requests(request):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+    if request.user.role != 'TECHNICIAN':
+        raise Exception(DisallowedRedirect)
+
+    all_requests = Request.objects.all()
+
+    context = {
+        'requests': all_requests
+    }
+
+    return render(request, 'requests.html', context)
+
+def update_request(request, id):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+
+    if request.user.role != 'TECHNICIAN':
+        raise Exception(DisallowedRedirect)
+    
+    r = Request.objects.filter(id=id).get()
+
+    if request.method == 'POST':
+        # form = UpdateRequestForm(request.POST)
+
+        r.modality = request.POST['modality']
+        r.date = request.POST['date']
+        r.hour = request.POST['hour']
+        r.comments = request.POST['comments']
+        r.status = request.POST['status']
+        
+        if 'accepted' in request.POST:
+            if request.POST['accepted'] == True or request.POST['accepted'] == 'on':
+                r.technician = request.user
+            else:
+                if r.technician.username == request.user.username:
+                    r.technician = None
+        else:
+            if r.technician.username == request.user.username:
+                r.technician = None
+        
+        r.save()
+
+        messages.Info(request, 'Request updated!')
+        return redirect('requests')
+
+    
+    accepted = False
+    technician_name = "None"
+
+    if r.technician is not None:
+        technician_name = r.technician.first_name + ' ' + r.technician.last_name
+
+        if r.technician.username == request.user.username:
+            accepted = True
+    
+    form = UpdateRequestForm(initial={
+        'modality': r.modality,
+        'date': r.date,
+        'hour': r.hour,
+        'comments': r.comments,
+        'status': r.status,
+        'accepted': accepted,
+    })
+
+
+    context = {
+        'request': r,
+        'form': form,
+        'name': r.lab_test.name,
+        'technician_name': technician_name
+    }
+
+    return render(request, 'update_request.html', context)
 
 ''''def updateTestRequest(request, id):
     if not request.user.is_authenticated:

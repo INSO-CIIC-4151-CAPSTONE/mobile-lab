@@ -46,6 +46,17 @@
   text-transform: none;
   text-decoration: none;
 }
+.main-requests {
+  color: #611b7f;
+  font-size: 16px;
+  font-style: normal;
+  font-family: Titillium Web;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-right: var(--dl-space-space-twounits);
+  text-transform: none;
+  text-decoration: none;
+}
 .main-about {
   color: #611b7f;
   font-size: 16px;

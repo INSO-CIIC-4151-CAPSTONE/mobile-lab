@@ -62,7 +62,16 @@ run inside repo directory: `pip3 install -r requirements.txt`
 # Terminal commands for DB table updates and run app
    1. `py manage.py makemigrations`
    2. `py manage.py migrate`
-   3. `y manage.py runserver`
+   3. `py manage.py runserver`
+
+# Terminal command to create the default admin
+   1. `py manage.py create_default_admin`
+
+# Terminal command to create an admin
+   1. `py manage.py create_admin --username=admin_username --email=admin_email --password=admin_password`
+
+# Terminal command to create a technician account
+   1. `py manage.py create_admin --username=admin_username --email=admin_email --password=admin_password`
 
 # Update Lab Tests in db from all_lab_tests.csv   
 `manage.py updatetests`

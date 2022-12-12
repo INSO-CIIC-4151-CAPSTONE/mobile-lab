@@ -162,3 +162,10 @@ if not DEBUG:
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+
+# Default admin account
+DJANGO_SUPERUSER_USERNAME = os.environ['DJANGO_SUPERUSER_USERNAME']
+DJANGO_SUPERUSER_PASSWORD = os.environ['DJANGO_SUPERUSER_PASSWORD']
+DJANGO_SUPERUSER_EMAIL = 'mobile.lab@mobile-lab.com'
+DJANGO_SUPERUSER_FIRST_NAME = 'MobileLab'
+DJANGO_SUPERUSER_LAST_NAME = 'Admin'

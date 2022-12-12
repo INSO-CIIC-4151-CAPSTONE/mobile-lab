@@ -13,7 +13,8 @@ urlpatterns = [
     path('contact/', views.contact_page, name='contact'),
     path('usercontact/', views.user_contact_page, name='usercontact'),
     path('catalog/', views.labTests, name='catalog'),
-    path('request/<str:id>', views.createTestRequest, name='request'),
-    path('testsList/', views.testList_page, name='testList')
-
+    path('request/<str:id>/', views.createTestRequest, name='request'),
+    path('testsList/', views.testList_page, name='testList'),
+    path('requests/', views.requests, name='requests'),
+    path('update/request/<str:id>/', views.update_request, name='update_request'),
 ]
