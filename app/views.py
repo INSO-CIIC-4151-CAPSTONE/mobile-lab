@@ -59,13 +59,13 @@ def login_page(request):
             print(user.role)
             if user.role == 'PATIENT' or user.role == 'Patient':
                 return redirect('profile')
-            elif user.role == 'ADMIN' or user.role == 'admin' :
+            elif user.role == 'ADMIN' or user.role == 'admin':
                 return redirect('profile')
             elif user.role == 'TECHNICIAN' or user.role == 'Technician':
                 return redirect('requests')
             else:
                 return redirect('profile')
-            
+
         else:
             messages.warning(request, 'Invalid Username or Password')
             return redirect("login")
@@ -106,6 +106,7 @@ def profile_page(request):
 
     return render(request, 'profile.html', context)
 
+
 def edit_profile(request):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
@@ -131,6 +132,7 @@ def edit_profile(request):
         'form': UserProfileForm(instance=request.user),
     }
     return render(request, 'edit_profile.html', context)
+
 
 """A view that displays the about page, info of mobile lab and mission"""
 
@@ -289,7 +291,8 @@ def createTestRequest(request, id):
         hour = request.POST['hour']
         comments = request.POST['comments']
 
-        request_obj = Request.objects.create(lab_test=lab_test, modality=modality, date=date, hour=hour, comments=comments,
+        request_obj = Request.objects.create(lab_test=lab_test, modality=modality, date=date, hour=hour,
+                                             comments=comments,
                                              patient=current_user)
 
         request_obj.save()
@@ -302,6 +305,7 @@ def createTestRequest(request, id):
 
 """A view that displays the a request test lab form page, this view is for logged users. 
    Users can update the selected day,hour and modality of selected test"""
+
 
 def requests(request):
     if not request.user.is_authenticated:
@@ -324,6 +328,7 @@ def requests(request):
 
     return render(request, 'requests.html', context)
 
+
 def update_request_technician(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
@@ -344,18 +349,17 @@ def update_request_technician(request, id):
         if request.user.is_authenticated and logout_request is not None:
             logout(request)
             return redirect('/')
-    
+
     r = Request.objects.filter(id=id).get()
 
     if request.method == 'POST':
         # form = UpdateRequestForm(request.POST)
 
-        r.modality = request.POST['modality']
         r.date = request.POST['date']
         r.hour = request.POST['hour']
         r.comments = request.POST['comments']
         r.status = request.POST['status']
-        
+
         if 'accepted' in request.POST:
             if request.POST['accepted'] == True or request.POST['accepted'] == 'on':
                 r.technician = request.user
@@ -365,13 +369,12 @@ def update_request_technician(request, id):
         else:
             if r.technician.username == request.user.username:
                 r.technician = None
-        
+
         r.save()
 
         messages.info(request, 'Request updated!')
         return redirect('requests')
 
-    
     accepted = False
     technician_name = "None"
 
@@ -380,16 +383,14 @@ def update_request_technician(request, id):
 
         if r.technician.username == request.user.username:
             accepted = True
-    
+
     form = UpdateRequestForm(initial={
-        'modality': r.modality,
         'date': r.date,
         'hour': r.hour,
         'comments': r.comments,
         'status': r.status,
         'accepted': accepted,
     })
-
 
     context = {
         'request': r,
@@ -399,6 +400,7 @@ def update_request_technician(request, id):
     }
 
     return render(request, 'update_request_technician.html', context)
+
 
 def updateTestRequest(request, id):
     if not request.user.is_authenticated:

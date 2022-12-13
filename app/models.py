@@ -16,7 +16,8 @@ STATUS_CHOICES = (
     ('In Process', 'Analyzing Results'),
     ('Completed', 'Blood sample taken '),
     ('Results Available', 'Results Available'),
-    ('Cancelled', 'Cancelled')
+    ('Cancelled', 'Cancelled'),
+    ('Accepted', 'Accepted')
 )
 
 MODALITY_CHOICES = (
@@ -65,7 +66,7 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=50, null=True, blank=True)
     employer_lab = models.ForeignKey(Laboratory, on_delete=models.CASCADE, null=True, blank=True)
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, default='', null=True, blank=True)
-    profile_picture = models.ImageField(default='/images/user.png', null=True, blank=True)
+    profile_picture = models.ImageField(null=True, blank=True)
 
 
 class Card(models.Model):
