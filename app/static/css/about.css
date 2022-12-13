@@ -150,7 +150,7 @@
 .about-hero {
   color: var(--dl-color-scheme-green100);
   width: 100%;
-  height: 769px;
+    /* height: 769px; */
   align-items: center;
   padding-bottom: var(--dl-space-space-halfunit);
   justify-content: center;
