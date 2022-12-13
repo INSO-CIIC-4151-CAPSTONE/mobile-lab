@@ -149,7 +149,7 @@ def dashBoard(request):
     total_request = Request.objects.all().count()
 
     context = {'patient': patients, 'total_request': total_request, 'total_patient': total_patients}
-    return render(request, 'dashBoard.html', context)
+    return render(request, 'dashboard.html', context)
 
 
 def settings_page(request):
