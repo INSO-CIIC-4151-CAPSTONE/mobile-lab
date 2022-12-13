@@ -7,6 +7,8 @@ from django.db import *
 from app.forms import PatientForm, AddressForm, HealthForm
 from app.models import User, Test, Request, Message
 from django.contrib import messages
+from app.forms import UpdateRequestForm
+from app.forms import UserProfileForm
 
 '''-----------------------------------© 2022 Mobile-Lab, All Rights Reserved.---------------------------------------'''
 
@@ -15,16 +17,19 @@ from django.contrib import messages
 
 def register_page(request):
     if request.method == 'POST':
+        print(request.POST)
         email = request.POST['email']
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
+        gender = request.POST['gender']
+        phone = int(request.POST['phone'])
 
         if password1 == password2:
             try:
                 user = User.objects.create_user(username=email, email=email, password=password1, first_name=first_name,
-                                                last_name=last_name, role='Patient')
+                                                last_name=last_name, role='Patient', phone_number=phone, gender=gender)
                 user.save()
 
                 user = authenticate(request, username=email, password=password1)
@@ -51,7 +56,16 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect('profile')
+            print(user.role)
+            if user.role == 'PATIENT' or user.role == 'Patient':
+                return redirect('profile')
+            elif user.role == 'ADMIN' or user.role == 'admin' :
+                return redirect('profile')
+            elif user.role == 'TECHNICIAN' or user.role == 'Technician':
+                return redirect('requests')
+            else:
+                return redirect('profile')
+            
         else:
             messages.warning(request, 'Invalid Username or Password')
             return redirect("login")
@@ -92,6 +106,31 @@ def profile_page(request):
 
     return render(request, 'profile.html', context)
 
+def edit_profile(request):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+    try:
+        ppic = request.user.profile_picture.url
+    except ValueError:
+        ppic = "/static/img/user.png"
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+
+    context = {
+        'fname': request.user.first_name,
+        'lname': request.user.last_name,
+        'gender': request.user.gender,
+        'address': request.user.address,
+        'phone-number': request.user.phone_number,
+        'ppic': ppic,
+        'form': UserProfileForm(instance=request.user),
+    }
+    return render(request, 'edit_profile.html', context)
 
 """A view that displays the about page, info of mobile lab and mission"""
 
@@ -224,6 +263,10 @@ def labTests(request):
 def createTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
+
+    if request.user.role != 'PATIENT' and request.user.role != 'Patient':
+        raise Exception(DisallowedRedirect)
+
     if request.method == 'POST':
         logout_request = request.POST.get('logout', None)
 
@@ -244,8 +287,9 @@ def createTestRequest(request, id):
         modality = request.POST['modality']
         date = request.POST['date']
         hour = request.POST['hour']
+        comments = request.POST['comments']
 
-        request_obj = Request.objects.create(lab_test=lab_test, modality=modality, date=date, hour=hour,
+        request_obj = Request.objects.create(lab_test=lab_test, modality=modality, date=date, hour=hour, comments=comments,
                                              patient=current_user)
 
         request_obj.save()
@@ -259,10 +303,107 @@ def createTestRequest(request, id):
 """A view that displays the a request test lab form page, this view is for logged users. 
    Users can update the selected day,hour and modality of selected test"""
 
+def requests(request):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+    if request.user.role != 'TECHNICIAN':
+        raise Exception(DisallowedRedirect)
+
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
+
+    all_requests = Request.objects.all()
+
+    context = {
+        'requests': all_requests
+    }
+
+    return render(request, 'requests.html', context)
+
+def update_request_technician(request, id):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+
+    if request.user.role != 'TECHNICIAN':
+        raise Exception(DisallowedRedirect)
+
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
+
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
+    
+    r = Request.objects.filter(id=id).get()
+
+    if request.method == 'POST':
+        # form = UpdateRequestForm(request.POST)
+
+        r.modality = request.POST['modality']
+        r.date = request.POST['date']
+        r.hour = request.POST['hour']
+        r.comments = request.POST['comments']
+        r.status = request.POST['status']
+        
+        if 'accepted' in request.POST:
+            if request.POST['accepted'] == True or request.POST['accepted'] == 'on':
+                r.technician = request.user
+            else:
+                if r.technician.username == request.user.username:
+                    r.technician = None
+        else:
+            if r.technician.username == request.user.username:
+                r.technician = None
+        
+        r.save()
+
+        messages.info(request, 'Request updated!')
+        return redirect('requests')
+
+    
+    accepted = False
+    technician_name = "None"
+
+    if r.technician is not None:
+        technician_name = r.technician.first_name + ' ' + r.technician.last_name
+
+        if r.technician.username == request.user.username:
+            accepted = True
+    
+    form = UpdateRequestForm(initial={
+        'modality': r.modality,
+        'date': r.date,
+        'hour': r.hour,
+        'comments': r.comments,
+        'status': r.status,
+        'accepted': accepted,
+    })
+
+
+    context = {
+        'request': r,
+        'form': form,
+        'name': r.lab_test.name,
+        'technician_name': technician_name
+    }
+
+    return render(request, 'update_request_technician.html', context)
 
 def updateTestRequest(request, id):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
+
     if request.method == 'POST':
         logout_request = request.POST.get('logout', None)
 

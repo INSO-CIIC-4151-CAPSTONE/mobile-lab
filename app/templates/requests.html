@@ -1,0 +1,67 @@
+{%  extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+    <html>
+    <head>
+     <section>
+  <!--for demo wrap-->
+      <link href="{% static 'css/requests.css' %}"rel="stylesheet" />
+  <h1>Requests</h1>
+
+  <div class="tbl-header">
+      <link href="{% static 'css/requests.css' %}"rel="stylesheet" />
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Request Date</th>
+          <th>Patient</th>
+          <th>Status</th>
+          <th>Comments</th>
+          <th>Modality</th>
+          <th>Assigned Technician</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        {% for r in requests %}
+        <tr>
+          <td>{{r.requested_date}}</td>
+          {% if r.patient is not None %}
+            <td>{{r.patient.first_name}} {{r.patient.last_name}}</td>
+          {% else %}
+            <td>N/A</td>
+          {% endif %}
+          <td>{{r.status}}</td>
+          <td>{{r.comments}}</td>
+          <td>{{r.modality}}</td>
+          {% if r.technician is not None %}
+            <td>{{r.technician.first_name}} {{r.technician.last_name}}</td>
+          {% else %}
+            <td>None</td>
+          {% endif %}
+          <td>
+            <a
+                href="/update/request/{{ r.id }}"
+                rel="noreferrer noopener"
+              >
+                Edit
+            </a> 
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+     </section>
+    </head>
+</html>
+{% endblock %}
+

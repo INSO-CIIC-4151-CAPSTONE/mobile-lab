@@ -22,6 +22,9 @@ urlpatterns = [
     path('testsList/', views.testList_page, name='testList'),
     path('settings/', views.settings_page, name="settings"),
 
+    path('testsList/', views.testList_page, name='testList'),
+    path('requests/', views.requests, name='requests'),
+    path('update/request/<str:id>/', views.update_request_technician, name='update_request_technician'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -64,7 +64,9 @@
       <link href="{% static 'css/profile.css' %}" rel="stylesheet" />
 
       <div class="profile-container">
-          <img class="profile-icon" src="{{ppic}}"/>
+          <a href="{%  url 'edit_profile' %}">
+            <img class="profile-icon" src="{{ppic}}"/>
+          </a>
       <br>
     <br>
           <h1 class="profile-title">{{ name }}</h1>
@@ -92,7 +94,9 @@
           </svg>
           <span class="profile-text">Gender: {{ user.gender }}</span>
           <span class="profile-text1">Phone-Number: {{ user.phone_number }}</span>
-          <span class="profile-text2"> Address: {{ user.address }} </span>
+          <a href="{%  url 'edit_profile' %}">
+            <span class="profile-text2">Address (click to edit): {{ address }} </span>
+          </a>
     <div>
     <br>
     <br>
