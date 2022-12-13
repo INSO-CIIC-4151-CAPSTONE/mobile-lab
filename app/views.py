@@ -93,7 +93,7 @@ def profile_page(request):
             logout(request)
             return redirect('/')
     try:
-        ppic = User.objects.filter(role='Patient').get(id=request.user.id).profile_picture.url
+        ppic = User.objects.get(id=request.user.id).profile_picture.url
     except ValueError:
         ppic = "/static/images/user.png"
 
