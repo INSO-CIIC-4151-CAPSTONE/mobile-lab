@@ -24,6 +24,7 @@ urlpatterns = [
 
     path('testsList/', views.testList_page, name='testList'),
     path('requests/', views.requests, name='requests'),
+    path('dashboard/', views.dashBoard, name='dashboard'),
     path('update/request/<str:id>/', views.update_request_technician, name='update_request_technician'),
 ]
 

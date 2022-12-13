@@ -76,6 +76,10 @@
               <button class="main-profile" onclick="location.href='/requests'">
                 PATIENT REQUESTS
               </button>
+                <button class="main-profile" onclick="location.href='/dashboard'">
+                DASHBOARD
+              </button>
+
               <form name = "logout" method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="logout" value="logout">

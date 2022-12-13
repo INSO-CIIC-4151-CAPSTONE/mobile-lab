@@ -141,6 +141,19 @@ def about_page(request):
     return render(request, 'about.html')
 
 
+def dashBoard(request):
+    patients = User.objects.filter(role='Patient').all()
+
+    request = Request.objects.get()
+
+    total_patients = patients.count()
+
+    total_request = Request.objects.all().count()
+
+    context = {'patient': patients, 'total_request': total_request, 'total_patient': total_patients, 'request': request}
+    return render(request, 'dashBoard.html', context)
+
+
 def settings_page(request):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
@@ -169,6 +182,7 @@ def settings_page(request):
             form.save()
             form1.save()
             form2.save()
+
             messages.success(request, 'Account settings updated!')
             return redirect('/profile')
 

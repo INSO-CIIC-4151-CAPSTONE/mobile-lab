@@ -1,6 +1,8 @@
+
 {%  load static %}
 <!DOCTYPE html>
 <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
+<html lang="en">
   <head>
     <title>main - MobiLab</title>
     <meta property="og:title" content="main - MobiLab" />
@@ -17,17 +19,13 @@
         font-size: 16px;
       }
 
-      body {
-        font-weight: 400;
-        font-style:normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: normal;
-        line-height: 1.15;
-        color: var(--dl-color-scheme-green100);
-        background-color: var(--dl-color-scheme-yellow20);
+       body {
 
-      }
+    background: -webkit-linear-gradient(left, #25c481, #c77ee0);
+  background: linear-gradient(to right, #25c481, #c77ee0);
+            font-family: Titillium Web;
+        }
+
     </style>
         <!-- Required meta tags -->
       <meta charset="utf-8">
@@ -55,48 +53,13 @@
         [data-thq="thq-dropdown"]:hover > div [data-thq="thq-dropdown-arrow"] {
           transform: rotate(90deg);
         }
-        a.button1 {
-  margin: 2em auto;
-  display: block;
-  -webkit-appearance: none;
-  border: 6px solid rgba(255,255,255,0.45);
-  border-radius: 50px;
-  padding: 1em 3em;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-clip: padding-box;
-  position: relative;
-  color: #FFF;
-}
-
-a.button1 {
-  background-color: #c2fbd7;
-  border-radius: 100px;
-  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
-  color: green;
-  cursor: pointer;
-  display: inline-block;
-  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
-  padding: 7px 20px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 250ms;
-  border: 0;
-  font-size: 16px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-a.button1:hover {
-  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);
-}
 
     </style>
   </head>
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   <body>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <div>
       <link href="{% static 'css/main.css' %}"rel="stylesheet" />
         <div class="main-navbar navbar-container">
@@ -126,56 +89,45 @@ a.button1:hover {
             </div>
           </div>
         </div>
-  <!--for demo wrap-->
-      <link href="{% static 'css/requests.css' %}"rel="stylesheet" />
-  <h1>Requests</h1>
-
-  <div class="tbl-header">
-      <link href="{% static 'css/requests.css' %}"rel="stylesheet" />
-    <table cellpadding="0" cellspacing="0" border="0">
-      <thead>
-        <tr>
-          <th>Request Date</th>
-          <th>Patient</th>
-          <th>Status</th>
-          <th>Comments</th>
-          <th>Assigned Technician</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-  <div class="tbl-content">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tbody>
-        {% for r in requests %}
-        <tr>
-          <td>{{r.requested_date}}</td>
-          {% if r.patient is not None %}
-            <td>{{r.patient.first_name}} {{r.patient.last_name}}</td>
-          {% else %}
-            <td>N/A</td>
-          {% endif %}
-          <td>{{r.status}}</td>
-          <td>{{r.comments}}</td>
-          {% if r.technician is not None %}
-            <td>{{r.technician.first_name}} {{r.technician.last_name}}</td>
-          {% else %}
-            <td>None</td>
-          {% endif %}
-          <td>
-            <a class="button1"
-                href="/update/request/{{ r.id }}"
-                rel="noreferrer noopener">
-
-                Edit
-            </a> 
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
     </div>
   </body>
+<br>
+<body>
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-black mb-3" id="total-orders">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Total Requests</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{total_request}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
 
+<div class="row">
+	<div class="col-md-5">
+		<h5>Patients: {{total_patient}}</h5>
+			<table class="table table-hover">
+				<tr>
+					<th>Patients</th>
+				</tr>
+				{% for i in patient %}
+					<tr>
+						<td>{{i.first_name}}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+    </div>
+  </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</html>
