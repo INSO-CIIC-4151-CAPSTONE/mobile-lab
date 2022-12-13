@@ -144,13 +144,11 @@ def about_page(request):
 def dashBoard(request):
     patients = User.objects.filter(role='Patient').all()
 
-    request = Request.objects.get()
-
     total_patients = patients.count()
 
     total_request = Request.objects.all().count()
 
-    context = {'patient': patients, 'total_request': total_request, 'total_patient': total_patients, 'request': request}
+    context = {'patient': patients, 'total_request': total_request, 'total_patient': total_patients}
     return render(request, 'dashBoard.html', context)
 
 

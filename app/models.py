@@ -39,7 +39,7 @@ REQUEST_STATUS_CHOICES = (
 
 
 class Address(models.Model):
-    Address_first_line = models.CharField(max_length=200)
+    Address_first_line = models.CharField(max_length=200, default='Mayaguez')
     Address_second_line = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     zip_code = models.CharField(max_length=15)
