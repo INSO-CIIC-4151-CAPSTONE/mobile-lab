@@ -1,9 +1,11 @@
 {%  extends 'main.html' %}
 {%  load static %}
 
+
 {% block content %}
 
  <!DOCTYPE html>
+
     {% include 'messages.html' %}
     <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
      <section>
@@ -34,7 +36,7 @@
                 <td>{{i.price}}</td>
 
                 <td>
-                    <a href= "/request/{{ i.id }}" class="button">Select</a>
+                    <a href= "/request/{{ i.id }}" class="button1">Select</a>
                 </td>
             </tr>
         {% endfor %}

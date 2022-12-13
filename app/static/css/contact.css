@@ -3065,14 +3065,18 @@ textarea::-moz-placeholder { color: #999999; }
 textarea:-ms-input-placeholder { color: #999999; }
 
 /*---------------------------------------------*/
-button {
-	outline: none !important;
-	border: none;
-	background: transparent;
+.button{
+  color: rgb(249, 249, 249);
+  width: 130px;
+  height: 42px;
+  transition: 0.3s;
+  font-family: Titillium Web;
+  border-color: #611b7f;
+  background-color: rgb(23, 144, 96);
 }
-
-button:hover {
-	cursor: pointer;
+.button:hover {
+  background-color: #58236b;
+  border-color: #179060;
 }
 
 iframe {
@@ -3232,7 +3236,6 @@ textarea.input1 + .shadow-input1 {
 }
 
 .contact1-form-btn {
-  min-width: 193px;
   height: 50px;
   border-radius: 25px;
   background: linear-gradient(90deg, #25c481 0%, rgba(232, 161, 255, 0.93) 100%);

@@ -67,30 +67,29 @@
   display: flex !important;
   transform: none !important;
 }
-.button-secondary {
-  color: var(--dl-color-scheme-green100);
-  transition: 0.3s;
-  border-color: #611b7f;
-  text-decoration: none;
-  background-color: rgb(255, 255, 255);
-}
-.button-secondary:hover {
-  color: var(--dl-color-scheme-white);
-  background-color: #611b7f;
-  border-color: rgb(23, 144, 96);
-}
-.button-primary {
-  color: #179060;
-  transition: 0.3s;
-  border-color: #611b7f;
-  text-decoration: none;
-  background-color: rgb(255, 255, 255);
-}
-.button-primary:hover {
-  color: #ffffff;
-  background-color: #611b7f;
-  border-color: #179060;
-}
+ .button {
+  height: 50px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #25c481 0%, rgba(232, 161, 255, 0.93) 100%);
+  font-family: Titillium Web;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+            border-color: transparent;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+        }
 .navbar-container {
   top: 0;
   width: 100%;

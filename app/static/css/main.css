@@ -79,6 +79,17 @@
   text-transform: none;
   text-decoration: none;
 }
+.main-setting{
+  color: rgb(162, 47, 162);
+  font-size: 16px;
+  font-style: normal;
+  font-family: Titillium Web;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-right: var(--dl-space-space-twounits);
+  text-transform: none;
+  text-decoration: none;
+}
 .main-logout {
   color: rgb(249, 249, 249);
   width: 130px;
@@ -86,9 +97,9 @@
   transition: 0.3s;
   font-family: Titillium Web;
   border-color: #611b7f;
-  background-color: rgb(20, 140, 92);
+  background-color: rgb(23, 144, 96);
 }
-.main-login:hover {
+.main-logout:hover {
   background-color: #58236b;
   border-color: #179060;
 }
@@ -147,3 +158,4 @@
   align-self: center;
   font-family: Titillium Web;
 }
+

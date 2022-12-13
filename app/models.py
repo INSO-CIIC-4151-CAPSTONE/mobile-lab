@@ -38,12 +38,11 @@ REQUEST_STATUS_CHOICES = (
 
 
 class Address(models.Model):
-    first_line = models.CharField(max_length=200)
-    second_line = models.CharField(max_length=200)
+    Address_first_line = models.CharField(max_length=200)
+    Address_second_line = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     zip_code = models.CharField(max_length=15)
     country = models.CharField(max_length=20, default='Puerto Rico')
-    state = models.CharField(max_length=50)
 
 
 class Laboratory(models.Model):
@@ -54,9 +53,9 @@ class Laboratory(models.Model):
 
 
 class HealthCarePlan(models.Model):
-    name = models.CharField(max_length=255)
-    card_front = models.ImageField(upload_to='insurance_cards_images/')
-    card_back = models.ImageField(upload_to='insurance_cards_images/')
+    Health_care_plan_name = models.CharField(max_length=255)
+    Health_care_plan_card_front = models.ImageField(upload_to='insurance_cards_images/')
+    Health_care_plan_card_back = models.ImageField(upload_to='insurance_cards_images/')
 
 
 class User(AbstractUser):
@@ -66,7 +65,7 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=50, null=True, blank=True)
     employer_lab = models.ForeignKey(Laboratory, on_delete=models.CASCADE, null=True, blank=True)
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, default='', null=True, blank=True)
-    profile_picture = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+    profile_picture = models.ImageField(default='/images/user.png', null=True, blank=True)
 
 
 class Card(models.Model):
@@ -75,7 +74,7 @@ class Card(models.Model):
 
 
 class Test(models.Model):
-    name = models.CharField(max_length=500)
+    name = models.CharField(max_length=500, unique=True)
     description = models.CharField(max_length=5000)
     requirements = models.CharField(max_length=1500)
     laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE)

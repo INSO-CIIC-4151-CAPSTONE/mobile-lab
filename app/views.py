@@ -3,6 +3,8 @@ from django.core.exceptions import DisallowedRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.db import *
+
+from app.forms import PatientForm, AddressForm, HealthForm
 from app.models import User, Test, Request, Message
 from django.contrib import messages
 
@@ -51,7 +53,7 @@ def login_page(request):
             login(request, user)
             return redirect('profile')
         else:
-            messages.success(request, 'Invalid Username or Password')
+            messages.warning(request, 'Invalid Username or Password')
             return redirect("login")
 
     return render(request, 'login.html')
@@ -77,7 +79,7 @@ def profile_page(request):
             logout(request)
             return redirect('/')
     try:
-        ppic = User.objects.filter(id=request.user.id).get().profile_picture.url
+        ppic = User.objects.filter(role='Patient').get(id=request.user.id).profile_picture.url
     except ValueError:
         ppic = "/static/images/user.png"
 
@@ -96,6 +98,41 @@ def profile_page(request):
 
 def about_page(request):
     return render(request, 'about.html')
+
+
+def settings_page(request):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('/')
+    current_patient = User.objects.filter(role='Patient').get(id=request.user.id)
+    try:
+        ppic = current_patient.profile_picture.url
+    except ValueError:
+        ppic = "/static/images/user.png"
+
+    form = PatientForm(instance=current_patient)
+    form1 = AddressForm(instance=current_patient)
+    form2 = HealthForm(instance=current_patient)
+
+    if request.method == 'POST':
+        form = PatientForm(request.POST, request.FILES, instance=current_patient)
+        form1 = AddressForm(request.POST, instance=current_patient)
+        form2 = HealthForm(request.POST, request.FILES, instance=current_patient)
+
+        if form.is_valid() and form1.is_valid() and form2.is_valid():
+            form.save()
+            form1.save()
+            form2.save()
+            messages.success(request, 'Account settings updated!')
+            return redirect('/profile')
+
+    context = {'form': form, 'form1': form1, 'form2': form2, 'ppic': ppic}
+    return render(request, 'user_settings.html', context)
 
 
 """A view that displays the contact page, this view is for not logged users. 

@@ -1,5 +1,8 @@
+import document as document
 from django.urls import path
 from . import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 ''' © 2022 Mobile-Lab, All Rights Reserved. '''
 
@@ -16,6 +19,9 @@ urlpatterns = [
     path('request/<str:id>', views.createTestRequest, name='request'),
     path('delete/<str:id>', views.deleteTestRequest, name='delete'),
     path('update/<str:id>', views.updateTestRequest, name='update'),
-    path('testsList/', views.testList_page, name='testList')
+    path('testsList/', views.testList_page, name='testList'),
+    path('settings/', views.settings_page, name="settings"),
 
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
